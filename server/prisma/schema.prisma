@@ -11,13 +11,14 @@ datasource db {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  email    String  @unique
-  password String
-  name     String
-  mobile   String  @unique
-  pan      String  @unique
-  Order    Order[]
+  id         Int     @id @default(autoincrement())
+  email      String  @unique
+  password   String
+  name       String
+  mobile     String  @unique
+  pan        String  @unique
+  isVerified Boolean @default(false)
+  Order      Order[]
 }
 
 enum AdminType {

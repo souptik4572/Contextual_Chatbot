@@ -5,7 +5,7 @@ import { createJwt } from '../helpers/jwtOperations.js';
 import { hashPassword, isPasswordMatching } from '../helpers/passwordOperations.js';
 import { handleError, handleSuccess } from '../helpers/responseHandlers.js';
 import { adminLoginValidator, adminRegistrationValidator } from '../validations/admin.js';
-import { doesAdminExist } from '../helpers/searchModels.js';
+import { doesAdminExist, doesUserExist } from '../helpers/searchModels.js';
 
 export const registerAdmin = async (req, res) => {
 	const { error } = adminRegistrationValidator(req.body);
@@ -52,7 +52,7 @@ export const loginAdmin = async (req, res) => {
 			res,
 			status: StatusCodes.OK,
 			message: 'Admin has been successfully logged in',
-			data: createJwt({ uniqueId: admin.id }),
+			data: { adminType: admin.type, token: createJwt({ uniqueId: admin.id }) },
 		});
 	} catch (error) {
 		return handleError({ res, message: error.message });
@@ -126,6 +126,41 @@ export const upgradeAdmin = async (req, res) => {
 			status: StatusCodes.OK,
 			message: 'Admin successfully upgraded to super admin',
 			data: admin,
+		});
+	} catch (error) {
+		return handleError({
+			res,
+			message: error.message,
+		});
+	}
+};
+
+export const verifyUser = async (req, res) => {
+	let { userId } = req.params;
+	userId = Number(userId);
+	try {
+		let user = await doesUserExist(userId, true);
+		if (!user)
+			return handleError({
+				res,
+				status: StatusCodes.NOT_FOUND,
+				message: 'User does not exist',
+			});
+		if (user.isVerified)
+			return handleError({
+				res,
+				status: StatusCodes.BAD_REQUEST,
+				message: 'User is already verified',
+			});
+		user = await prisma.user.update({
+			where: { id: userId },
+			data: { isVerified: true },
+		});
+		return handleSuccess({
+			res,
+			status: StatusCodes.OK,
+			message: 'User has been successfully verified',
+			data: user,
 		});
 	} catch (error) {
 		return handleError({

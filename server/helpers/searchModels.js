@@ -21,10 +21,11 @@ export const doesProductTypeExist = async (productTypeId) => {
 	return !!productType;
 };
 
-export const doesUserExist = async (userId) => {
+export const doesUserExist = async (userId, shouldReturnUser = false) => {
 	const user = await prisma.user.findFirst({
 		where: { id: userId },
 	});
+	if (shouldReturnUser) return user;
 	return !!user;
 };
 

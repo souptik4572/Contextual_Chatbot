@@ -5,6 +5,7 @@ import {
 	loginAdmin,
 	registerAdmin,
 	upgradeAdmin,
+	verifyUser,
 } from '../controllers/admin.js';
 import { isSuperAdmin } from '../middlewares/adminCheck.js';
 import { authProtection } from '../middlewares/authStrategy.js';
@@ -16,6 +17,8 @@ router.put('/register', registerAdmin);
 router.post('/login', loginAdmin);
 
 router.get('/', [authProtection(true), isSuperAdmin], getAllAdmins);
+
+router.patch('/verify-user/:userId', authProtection(true), verifyUser);
 
 router.delete('/:adminId', [authProtection(true), isSuperAdmin], deleteAdmin);
 
