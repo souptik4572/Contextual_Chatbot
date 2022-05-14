@@ -4,12 +4,14 @@ import { PROCESSING, COMPLETED, CANCELLED } from '../../constants/orderStatusTyp
 const createOrderValidationSchema = Joi.object({
 	userId: Joi.number().integer().required(),
 	productId: Joi.number().integer().required(),
+	orderTypeId: Joi.number().integer().required(),
+	orderStatusId: Joi.number().integer().required(),
 });
 
 export const createOrderValidator = (body) => createOrderValidationSchema.validate(body);
 
 const changeOrderStatusValidationSchema = Joi.object({
-	status: Joi.string().valid(PROCESSING, COMPLETED, CANCELLED).required(),
+	orderStatusId: Joi.number().integer().required(),
 });
 
 export const changeOrderStatusValidator = (body) =>
