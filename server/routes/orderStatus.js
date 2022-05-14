@@ -1,5 +1,5 @@
 import express from 'express';
-import { convertToNumber } from '../middlewares/convertToNumber';
+import { convertToNumber } from '../middlewares/convertToNumber.js';
 
 
 const router = express.Router();

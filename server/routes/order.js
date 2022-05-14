@@ -8,7 +8,7 @@ import {
 } from '../controllers/order.js';
 import { isSuperAdmin } from '../middlewares/adminCheck.js';
 import { authProtection } from '../middlewares/authStrategy.js';
-import { convertToNumber } from '../middlewares/convertToNumber';
+import { convertToNumber } from '../middlewares/convertToNumber.js';
 
 const router = express.Router();
 
