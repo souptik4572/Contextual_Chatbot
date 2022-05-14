@@ -82,7 +82,6 @@ export const getAllAdmins = async (req, res) => {
 
 export const deleteAdmin = async (req, res) => {
 	let { adminId } = req.params;
-	adminId = Number(adminId);
 	try {
 		if (!(await doesAdminExist(adminId)))
 			return handleError({
@@ -109,7 +108,6 @@ export const deleteAdmin = async (req, res) => {
 
 export const upgradeAdmin = async (req, res) => {
 	let { adminId } = req.params;
-	adminId = Number(adminId);
 	try {
 		if (!(await doesAdminExist(adminId)))
 			return handleError({
@@ -137,7 +135,6 @@ export const upgradeAdmin = async (req, res) => {
 
 export const verifyUser = async (req, res) => {
 	let { userId } = req.params;
-	userId = Number(userId);
 	try {
 		let user = await doesUserExist(userId, true);
 		if (!user)

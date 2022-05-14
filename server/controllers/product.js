@@ -44,7 +44,6 @@ export const createProduct = async (req, res) => {
 
 export const deleteProduct = async (req, res) => {
 	let { productId } = req.params;
-	productId = Number(productId);
 	try {
 		if (!(await doesProductExist(productId)))
 			return handleError({

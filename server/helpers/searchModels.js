@@ -29,6 +29,13 @@ export const doesUserExist = async (userId, shouldReturnUser = false) => {
 	return !!user;
 };
 
+export const doesOrderTypeExist = async (orderTypeId) => {
+	const orderType = await prisma.orderType.findFirst({
+		where: { id: orderTypeId },
+	});
+	return !!orderType;
+};
+
 export const doesOrderExist = async (orderId) => {
 	const order = await prisma.order.findFirst({
 		where: { id: orderId },

@@ -51,7 +51,6 @@ export const createOrder = async (req, res) => {
 
 export const getOrder = async (req, res) => {
 	let { orderId } = req.params;
-	orderId = Number(orderId);
 	try {
 		const order = await prisma.order.findUnique({
 			where: { id: orderId },
@@ -73,7 +72,6 @@ export const getOrder = async (req, res) => {
 
 export const changeOrderStatus = async (req, res) => {
 	let { orderId } = req.params;
-	orderId = Number(orderId);
 	try {
 		if (!(await doesOrderExist(orderId)))
 			return handleError({
@@ -98,7 +96,6 @@ export const changeOrderStatus = async (req, res) => {
 
 export const deleteOrder = async (req, res) => {
 	let { orderId } = req.params;
-	orderId = Number(orderId);
 	try {
 		if (!(await doesOrderExist(orderId)))
 			return handleError({

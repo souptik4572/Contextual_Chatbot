@@ -57,7 +57,7 @@ model OrderStatus {
 
 model OrderType {
   id     Int     @id @default(autoincrement())
-  name   String
+  name   String  @unique
   orders Order[]
 }
 
