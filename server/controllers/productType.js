@@ -3,6 +3,7 @@ import { prisma } from '../config/prismaConfig.js';
 import { handleSuccess, handleError } from '../helpers/responseHandlers.js';
 import { createProductTypeValidator } from '../validations/productType.js';
 import { doesProductTypeExist } from '../helpers/searchModels.js';
+import { convertToUniqueFormat } from '../helpers/formatEnums.js';
 
 export const getAllProductTypes = async (req, res) => {
 	try {
@@ -22,6 +23,7 @@ export const createProductType = async (req, res) => {
 	const { error } = createProductTypeValidator(req.body);
 	if (error) return handleError({ res, status: StatusCodes.BAD_REQUEST, message: error.message });
 	try {
+		req.body.name = convertToUniqueFormat(req.body.name);
 		const productType = await prisma.productType.create({
 			data: req.body,
 		});

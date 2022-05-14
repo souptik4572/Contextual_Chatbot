@@ -1,5 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 import { prisma } from '../config/prismaConfig.js';
+import { convertToUniqueFormat } from '../helpers/formatEnums.js';
 import { handleError, handleSuccess } from '../helpers/responseHandlers.js';
 import { doesOrderTypeExist } from '../helpers/searchModels.js';
 import { createOrderTypeValidator } from '../validations/orderType.js';
@@ -22,6 +23,7 @@ export const createOrderType = async (req, res) => {
 	const { error } = createOrderTypeValidator(req.body);
 	if (error) return handleError({ res, status: StatusCodes.BAD_REQUEST, message: error.message });
 	try {
+		req.body.name = convertToUniqueFormat(req.body.name);
 		const orderType = await prisma.orderType.create({
 			data: req.body,
 		});

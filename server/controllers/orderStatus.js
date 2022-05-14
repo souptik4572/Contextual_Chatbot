@@ -3,6 +3,7 @@ import { prisma } from '../config/prismaConfig.js';
 import { handleError, handleSuccess } from '../helpers/responseHandlers.js';
 import { doesOrderStatusExist } from '../helpers/searchModels.js';
 import { createOrderStatusValidator } from '../validations/orderStatus.js';
+import { convertToUniqueFormat } from '../helpers/formatEnums.js';
 
 export const getAllOrderStatuses = async (req, res) => {
 	try {
@@ -22,6 +23,7 @@ export const createOrderStatus = async (req, res) => {
 	const { error } = createOrderStatusValidator(req.body);
 	if (error) return handleError({ res, status: StatusCodes.BAD_REQUEST, message: error.message });
 	try {
+		req.body.name = convertToUniqueFormat(req.body.name);
 		const orderStatus = await prisma.orderStatus.create({
 			data: req.body,
 		});
