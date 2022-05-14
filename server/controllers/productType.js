@@ -37,7 +37,7 @@ export const createProductType = async (req, res) => {
 };
 
 export const deleteProductType = async (req, res) => {
-	let { productTypeId } = req.params;
+	const { productTypeId } = req.params;
 	try {
 		if (!(await doesProductTypeExist(productTypeId)))
 			return handleError({

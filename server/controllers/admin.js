@@ -81,7 +81,7 @@ export const getAllAdmins = async (req, res) => {
 };
 
 export const deleteAdmin = async (req, res) => {
-	let { adminId } = req.params;
+	const { adminId } = req.params;
 	try {
 		if (!(await doesAdminExist(adminId)))
 			return handleError({
@@ -107,7 +107,7 @@ export const deleteAdmin = async (req, res) => {
 };
 
 export const upgradeAdmin = async (req, res) => {
-	let { adminId } = req.params;
+	const { adminId } = req.params;
 	try {
 		if (!(await doesAdminExist(adminId)))
 			return handleError({
@@ -134,9 +134,9 @@ export const upgradeAdmin = async (req, res) => {
 };
 
 export const verifyUser = async (req, res) => {
-	let { userId } = req.params;
+	const { userId } = req.params;
 	try {
-		let user = await doesUserExist(userId, true);
+		const user = await doesUserExist(userId, true);
 		if (!user)
 			return handleError({
 				res,

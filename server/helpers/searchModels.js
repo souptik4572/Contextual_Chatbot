@@ -36,6 +36,13 @@ export const doesOrderTypeExist = async (orderTypeId) => {
 	return !!orderType;
 };
 
+export const doesOrderStatusExist = async (orderStatusId) => {
+	const orderStatus = await prisma.orderStatus.findFirst({
+		where: { id: orderStatusId },
+	});
+	return !!orderStatus;
+};
+
 export const doesOrderExist = async (orderId) => {
 	const order = await prisma.order.findFirst({
 		where: { id: orderId },
