@@ -49,18 +49,27 @@ model Product {
   Order         Order[]
 }
 
-enum OrderStatus {
-  PROCESSING
-  COMPLETED
-  CANCELLED
+model OrderStatus {
+  id     Int     @id @default(autoincrement())
+  name   String  @unique
+  orders Order[]
+}
+
+model OrderType {
+  id     Int     @id @default(autoincrement())
+  name   String
+  orders Order[]
 }
 
 model Order {
-  id        Int         @id @default(autoincrement())
-  user      User        @relation(fields: [userId], references: [id])
-  userId    Int
-  product   Product     @relation(fields: [productId], references: [id])
-  productId Int
-  datetime  DateTime    @default(now())
-  status    OrderStatus @default(PROCESSING)
+  id            Int         @id @default(autoincrement())
+  user          User        @relation(fields: [userId], references: [id])
+  userId        Int
+  product       Product     @relation(fields: [productId], references: [id])
+  productId     Int
+  datetime      DateTime    @default(now())
+  status        OrderStatus @relation(fields: [orderStatusId], references: [id])
+  orderStatusId Int
+  type          OrderType   @relation(fields: [orderTypeId], references: [id])
+  orderTypeId   Int
 }

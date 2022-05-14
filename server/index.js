@@ -1,11 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-
-import userRoutes from './routes/user.js';
-import adminRoutes from './routes/admin.js';
-import productTypeRoutes from './routes/productType.js';
-import productRoutes from './routes/product.js';
-import orderRoutes from './routes/order.js';
+import routes from './routes/index.js';
 
 const app = express();
 
@@ -14,11 +9,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/v1/users', userRoutes);
-app.use('/api/v1/admins', adminRoutes);
-app.use('/api/v1/product-types', productTypeRoutes);
-app.use('/api/v1/products', productRoutes);
-app.use('/api/v1/orders', orderRoutes);
+app.use('/api/v1', routes);
 
 app.get('/', (req, res) => {
 	return res.send('I am here in index.js');
