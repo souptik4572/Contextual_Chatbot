@@ -1,5 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
-import { ADMIN, SUPER_ADMIN } from '../../constants/adminTypes.js';
+import { ADMIN, SUPER_ADMIN } from '../constants/adminTypes.js';
 import { prisma } from '../config/prismaConfig.js';
 import { createJwt } from '../helpers/jwtOperations.js';
 import { hashPassword, isPasswordMatching } from '../helpers/passwordOperations.js';
