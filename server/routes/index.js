@@ -7,6 +7,7 @@ import productRoutes from './product.js';
 import orderTypeRoutes from './orderType.js';
 import orderStatusRoutes from './orderStatus.js';
 import orderRoutes from './order.js';
+import faqRoutes from './faq.js';
 
 const router = express.Router();
 
@@ -17,5 +18,6 @@ router.use('/products', productRoutes);
 router.use('/order-types', orderTypeRoutes);
 router.use('/order-statuses', orderStatusRoutes);
 router.use('/orders', orderRoutes);
+router.use('/faqs', faqRoutes);
 
 export default router;

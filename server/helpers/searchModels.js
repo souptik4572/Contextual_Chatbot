@@ -49,3 +49,10 @@ export const doesOrderExist = async (orderId) => {
 	});
 	return !!order;
 };
+
+export const doesFaqExist = async (faqId) => {
+	const faq = await prisma.faq.findFirst({
+		where: { id: faqId },
+	});
+	return !!faq;
+};

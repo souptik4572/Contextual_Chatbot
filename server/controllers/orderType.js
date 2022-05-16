@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 import { prisma } from '../config/prismaConfig.js';
-import { convertToUniqueFormat } from '../helpers/formatEnums.js';
+import { convertToUniqueFormat } from '../helpers/formatParams.js';
 import { handleError, handleSuccess } from '../helpers/responseHandlers.js';
 import { doesOrderTypeExist } from '../helpers/searchModels.js';
 import { createOrderTypeValidator } from '../validations/orderType.js';

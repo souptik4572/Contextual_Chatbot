@@ -47,18 +47,21 @@ model Product {
   type          ProductType @relation(fields: [productTypeId], references: [id])
   productTypeId Int
   Order         Order[]
+  Faq           Faq[]
 }
 
 model OrderStatus {
   id     Int     @id @default(autoincrement())
   name   String  @unique
   orders Order[]
+  Faq    Faq[]
 }
 
 model OrderType {
   id     Int     @id @default(autoincrement())
   name   String  @unique
   orders Order[]
+  Faq    Faq[]
 }
 
 model Order {
@@ -72,4 +75,22 @@ model Order {
   orderStatusId Int
   type          OrderType   @relation(fields: [orderTypeId], references: [id])
   orderTypeId   Int
+  Faq           Faq[]
+}
+
+model Faq {
+  id            Int          @id @default(autoincrement())
+  question      String
+  description   String
+  order         Order?       @relation(fields: [orderId], references: [id])
+  product       Product?     @relation(fields: [productId], references: [id])
+  orderStatus   OrderStatus? @relation(fields: [orderStatusId], references: [id])
+  orderType     OrderType?   @relation(fields: [orderTypeId], references: [id])
+  orderId       Int?
+  productId     Int?
+  orderStatusId Int?
+  orderTypeId   Int?
+  parentFaqId   Int?
+  parentFaq     Faq?         @relation("LinkedFaqs", fields: [parentFaqId], references: [id])
+  childFaq      Faq[]        @relation("LinkedFaqs")
 }

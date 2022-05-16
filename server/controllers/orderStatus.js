@@ -3,7 +3,7 @@ import { prisma } from '../config/prismaConfig.js';
 import { handleError, handleSuccess } from '../helpers/responseHandlers.js';
 import { doesOrderStatusExist } from '../helpers/searchModels.js';
 import { createOrderStatusValidator } from '../validations/orderStatus.js';
-import { convertToUniqueFormat } from '../helpers/formatEnums.js';
+import { convertToUniqueFormat } from '../helpers/formatParams.js';
 
 export const getAllOrderStatuses = async (req, res) => {
 	try {
