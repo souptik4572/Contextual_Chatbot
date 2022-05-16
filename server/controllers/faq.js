@@ -20,6 +20,9 @@ export const filterFaqs = async (req, res) => {
 				orderStatusId,
 				orderTypeId,
 			},
+			include: {
+				childFaqs: 1,
+			},
 		});
 		return handleSuccess({
 			res,
@@ -32,11 +35,42 @@ export const filterFaqs = async (req, res) => {
 	}
 };
 
+export const getFaq = async (req, res) => {
+	const { faqId } = req.params;
+	try {
+		if (!(await doesFaqExist(faqId)))
+			return handleError({
+				res,
+				status: StatusCodes.NOT_FOUND,
+				message: 'Faq does not exist',
+			});
+		const faq = await prisma.faq.findUnique({
+			where: { id: faqId },
+			include: {
+				order: 1,
+				orderStatus: 1,
+				orderType: 1,
+				product: 1,
+				parentFaq: 1,
+				childFaqs: 1,
+			},
+		});
+		return handleSuccess({
+			res,
+			status: StatusCodes.OK,
+			message: 'The detailed faq data',
+			data: faq,
+		});
+	} catch (error) {
+		return handleError({ res, message: error.message });
+	}
+};
+
 export const createFaq = async (req, res) => {
 	const { error } = createFaqValidator(req.body);
 	if (error) return handleError({ res, status: StatusCodes.BAD_REQUEST, message: error.message });
 	try {
-		const { orderId, productId, orderStatusId, orderTypeId } = req.body;
+		const { orderId, productId, orderStatusId, orderTypeId, parentFaqId } = req.body;
 		if (!!orderId && !(await doesOrderExist(orderId)))
 			return handleError({
 				res,
@@ -60,6 +94,12 @@ export const createFaq = async (req, res) => {
 				res,
 				status: StatusCodes.NOT_FOUND,
 				message: 'Order type with given id does not exist',
+			});
+		if (!!parentFaqId && !(await doesFaqExist(parentFaqId)))
+			return handleError({
+				res,
+				status: StatusCodes.NOT_FOUND,
+				message: 'Faq with given id does not exist',
 			});
 		const faq = await prisma.faq.create({
 			data: req.body,

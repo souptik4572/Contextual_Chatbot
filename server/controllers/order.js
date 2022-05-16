@@ -70,6 +70,12 @@ export const createOrder = async (req, res) => {
 export const getOrder = async (req, res) => {
 	const { orderId } = req.params;
 	try {
+		if (!(await doesOrderExist(orderId)))
+			return handleError({
+				res,
+				status: StatusCodes.NOT_FOUND,
+				message: 'Order does not exist',
+			});
 		const order = await prisma.order.findUnique({
 			where: { id: orderId },
 			include: {

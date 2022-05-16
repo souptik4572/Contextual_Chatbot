@@ -81,7 +81,7 @@ model Order {
 model Faq {
   id            Int          @id @default(autoincrement())
   question      String
-  description   String
+  description   String?
   order         Order?       @relation(fields: [orderId], references: [id])
   product       Product?     @relation(fields: [productId], references: [id])
   orderStatus   OrderStatus? @relation(fields: [orderStatusId], references: [id])
@@ -92,5 +92,5 @@ model Faq {
   orderTypeId   Int?
   parentFaqId   Int?
   parentFaq     Faq?         @relation("LinkedFaqs", fields: [parentFaqId], references: [id])
-  childFaq      Faq[]        @relation("LinkedFaqs")
+  childFaqs      Faq[]        @relation("LinkedFaqs")
 }
