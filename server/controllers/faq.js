@@ -5,14 +5,18 @@ import { doesAllExist, doesFaqExist } from '../helpers/searchModels.js';
 import { createFaqValidator } from '../validations/faq.js';
 
 export const filterFaqs = async (req, res) => {
-	const { orderId, productId, orderStatusId, orderTypeId } = req.query;
+	const { orderId, productId, orderStatusId, orderTypeId, userId, productTypeId, parentFaqId } =
+		req.query;
 	try {
 		const faqs = await prisma.faq.findMany({
 			where: {
+				userId,
 				orderId,
+				productTypeId,
 				productId,
 				orderStatusId,
 				orderTypeId,
+				parentFaqId,
 			},
 			include: {
 				childFaqs: 1,
@@ -47,6 +51,8 @@ export const getFaq = async (req, res) => {
 				product: 1,
 				parentFaq: 1,
 				childFaqs: 1,
+				productType: 1,
+				user: 1,
 			},
 		});
 		return handleSuccess({
@@ -64,9 +70,19 @@ export const createFaq = async (req, res) => {
 	const { error } = createFaqValidator(req.body);
 	if (error) return handleError({ res, status: StatusCodes.BAD_REQUEST, message: error.message });
 	try {
-		const { orderId, productId, orderStatusId, orderTypeId, parentFaqId } = req.body;
-		const errorMessage = await doesAllExist({
+		const {
 			orderId,
+			productId,
+			orderStatusId,
+			orderTypeId,
+			parentFaqId,
+			userId,
+			productTypeId,
+		} = req.body;
+		const errorMessage = await doesAllExist({
+			userId,
+			orderId,
+			productTypeId,
 			productId,
 			orderStatusId,
 			orderTypeId,

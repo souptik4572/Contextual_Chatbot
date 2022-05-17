@@ -19,6 +19,7 @@ model User {
   pan        String  @unique
   isVerified Boolean @default(false)
   Order      Order[]
+  Faq        Faq[]
 }
 
 enum AdminType {
@@ -38,6 +39,7 @@ model ProductType {
   id       Int       @id @default(autoincrement())
   name     String    @unique
   products Product[]
+  Faq      Faq[]
 }
 
 model Product {
@@ -82,15 +84,19 @@ model Faq {
   id            Int          @id @default(autoincrement())
   question      String
   description   String?
+  user          User?        @relation(fields: [userId], references: [id])
   order         Order?       @relation(fields: [orderId], references: [id])
+  productType   ProductType? @relation(fields: [productTypeId], references: [id])
   product       Product?     @relation(fields: [productId], references: [id])
   orderStatus   OrderStatus? @relation(fields: [orderStatusId], references: [id])
   orderType     OrderType?   @relation(fields: [orderTypeId], references: [id])
+  userId        Int?
   orderId       Int?
   productId     Int?
+  productTypeId Int?
   orderStatusId Int?
   orderTypeId   Int?
   parentFaqId   Int?
   parentFaq     Faq?         @relation("LinkedFaqs", fields: [parentFaqId], references: [id])
-  childFaqs      Faq[]        @relation("LinkedFaqs")
+  childFaqs     Faq[]        @relation("LinkedFaqs")
 }

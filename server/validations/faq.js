@@ -8,6 +8,8 @@ const createFaqValidationSchema = Joi.object({
 	orderStatusId: Joi.number().integer(),
 	orderTypeId: Joi.number().integer(),
 	parentFaqId: Joi.number().integer(),
+	userId: Joi.number().integer(),
+	productTypeId: Joi.number().integer(),
 });
 
 export const createFaqValidator = (body) => createFaqValidationSchema.validate(body);
