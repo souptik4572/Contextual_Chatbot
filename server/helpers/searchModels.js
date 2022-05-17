@@ -56,3 +56,28 @@ export const doesFaqExist = async (faqId) => {
 	});
 	return !!faq;
 };
+
+export const doesAllExist = async ({
+	adminId,
+	userId,
+	productId,
+	productTypeId,
+	orderId,
+	orderTypeId,
+	orderStatusId,
+	faqId,
+}) => {
+	if (!!adminId && !(await doesAdminExist(adminId))) return 'Admin with given id does not exist';
+	if (!!userId && !(await doesUserExist(userId))) return 'User with given id does not exist';
+	if (!!productTypeId && !(await doesProductTypeExist(productTypeId)))
+		return 'Product type with given id does not exist';
+	if (!!productId && !(await doesProductExist(productId)))
+		return 'Product with given id does not exist';
+	if (!!orderTypeId && !(await doesOrderTypeExist(orderTypeId)))
+		return 'Order type with given id does not exist';
+	if (!!orderStatusId && !(await doesOrderStatusExist(orderStatusId)))
+		return 'Order status with given id does not exist';
+	if (!!orderId && !(await doesOrderExist(orderId))) return 'Order with given id does not exist';
+	if (!!faqId && !(await doesFaqExist(faqId))) return 'Faq with given id does not exist';
+	return null;
+};

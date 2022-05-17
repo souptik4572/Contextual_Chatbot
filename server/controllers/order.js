@@ -2,13 +2,7 @@ import { StatusCodes } from 'http-status-codes';
 import { prisma } from '../config/prismaConfig.js';
 import { handleSuccess, handleError } from '../helpers/responseHandlers.js';
 import { createOrderValidator } from '../validations/order.js';
-import {
-	doesUserExist,
-	doesProductExist,
-	doesOrderExist,
-	doesOrderTypeExist,
-	doesOrderStatusExist,
-} from '../helpers/searchModels.js';
+import { doesOrderExist, doesAllExist } from '../helpers/searchModels.js';
 
 export const getAllOrders = async (req, res) => {
 	try {
@@ -29,29 +23,12 @@ export const createOrder = async (req, res) => {
 	if (error) return handleError({ res, status: StatusCodes.BAD_REQUEST, message: error.message });
 	try {
 		const { userId, productId, orderTypeId, orderStatusId } = req.body;
-		if (!(await doesUserExist(userId)))
+		const errorMessage = await doesAllExist({ userId, productId, orderTypeId, orderStatusId });
+		if (errorMessage)
 			return handleError({
 				res,
 				status: StatusCodes.NOT_FOUND,
-				message: 'User with given id does not exist',
-			});
-		if (!(await doesProductExist(productId)))
-			return handleError({
-				res,
-				status: StatusCodes.NOT_FOUND,
-				message: 'Product with given id does not exist',
-			});
-		if (!(await doesOrderTypeExist(orderTypeId)))
-			return handleError({
-				res,
-				status: StatusCodes.NOT_FOUND,
-				message: 'Order type with given id does not exist',
-			});
-		if (!(await doesOrderStatusExist(orderStatusId)))
-			return handleError({
-				res,
-				status: StatusCodes.NOT_FOUND,
-				message: 'Order status with given id does not exist',
+				message: errorMessage,
 			});
 		const order = await prisma.order.create({
 			data: req.body,
@@ -100,17 +77,12 @@ export const changeOrderStatus = async (req, res) => {
 	const { orderId } = req.params;
 	try {
 		const { orderStatusId } = req.body;
-		if (!(await doesOrderExist(orderId)))
+		const errorMessage = await doesAllExist({ orderId, orderStatusId });
+		if (errorMessage)
 			return handleError({
 				res,
 				status: StatusCodes.NOT_FOUND,
-				message: 'Order does not exist',
-			});
-		if (!(await doesOrderStatusExist(orderStatusId)))
-			return handleError({
-				res,
-				status: StatusCodes.NOT_FOUND,
-				message: 'Order status with given id does not exist',
+				message: errorMessage,
 			});
 		const order = await prisma.order.update({
 			where: { id: orderId },

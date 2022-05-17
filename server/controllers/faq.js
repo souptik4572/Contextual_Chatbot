@@ -1,13 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 import { prisma } from '../config/prismaConfig.js';
 import { handleError, handleSuccess } from '../helpers/responseHandlers.js';
-import {
-	doesFaqExist,
-	doesOrderExist,
-	doesOrderStatusExist,
-	doesOrderTypeExist,
-	doesProductExist,
-} from '../helpers/searchModels.js';
+import { doesAllExist, doesFaqExist } from '../helpers/searchModels.js';
 import { createFaqValidator } from '../validations/faq.js';
 
 export const filterFaqs = async (req, res) => {
@@ -71,35 +65,18 @@ export const createFaq = async (req, res) => {
 	if (error) return handleError({ res, status: StatusCodes.BAD_REQUEST, message: error.message });
 	try {
 		const { orderId, productId, orderStatusId, orderTypeId, parentFaqId } = req.body;
-		if (!!orderId && !(await doesOrderExist(orderId)))
+		const errorMessage = await doesAllExist({
+			orderId,
+			productId,
+			orderStatusId,
+			orderTypeId,
+			faqId: parentFaqId,
+		});
+		if (!!errorMessage)
 			return handleError({
 				res,
 				status: StatusCodes.NOT_FOUND,
-				message: 'Order with given id does not exist',
-			});
-		if (!!productId && !(await doesProductExist(productId)))
-			return handleError({
-				res,
-				status: StatusCodes.NOT_FOUND,
-				message: 'Product with given id does not exist',
-			});
-		if (!!orderStatusId && !(await doesOrderStatusExist(orderStatusId)))
-			return handleError({
-				res,
-				status: StatusCodes.NOT_FOUND,
-				message: 'Order status with given id does not exist',
-			});
-		if (!!orderTypeId && !(await doesOrderTypeExist(orderTypeId)))
-			return handleError({
-				res,
-				status: StatusCodes.NOT_FOUND,
-				message: 'Order type with given id does not exist',
-			});
-		if (!!parentFaqId && !(await doesFaqExist(parentFaqId)))
-			return handleError({
-				res,
-				status: StatusCodes.NOT_FOUND,
-				message: 'Faq with given id does not exist',
+				message: errorMessage,
 			});
 		const faq = await prisma.faq.create({
 			data: req.body,
