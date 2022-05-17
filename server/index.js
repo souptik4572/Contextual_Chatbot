@@ -11,10 +11,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/v1', routes);
 
-app.get('/', (req, res) => {
-	return res.send('I am here in index.js');
-});
-
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
