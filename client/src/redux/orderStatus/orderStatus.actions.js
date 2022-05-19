@@ -27,7 +27,7 @@ export const getAllOrderStatuses = () => async (dispatch) => {
 		dispatch(fetchOrderStatusSuccess(orderStatuses));
 		return true;
 	} catch (error) {
-		dispatch(fetchOrderStatusFailure(error.response.data.error));
+		dispatch(fetchOrderStatusFailure(error.response.data.message));
 		return false;
 	}
 };

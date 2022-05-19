@@ -38,7 +38,7 @@ export const adminLogin = (email, password) => async (dispatch) => {
 		dispatch(adminLoginSuccess(token, adminType));
 		return true;
 	} catch (error) {
-		dispatch(adminLoginFailure(error.response.data.error));
+		dispatch(adminLoginFailure(error.response.data.message));
 		return false;
 	}
 };

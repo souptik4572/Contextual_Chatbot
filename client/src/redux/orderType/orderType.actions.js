@@ -27,7 +27,7 @@ export const getAllOrderTypes = () => async (dispatch) => {
 		dispatch(fetchOrderTypeSuccess(orderTypes));
 		return true;
 	} catch (error) {
-		dispatch(fetchOrderTypeFailure(error.response.data.error));
+		dispatch(fetchOrderTypeFailure(error.response.data.message));
 		return false;
 	}
 };

@@ -27,7 +27,7 @@ export const getAllProductTypes = () => async (dispatch) => {
 		dispatch(fetchProductTypeSuccess(productTypes));
 		return true;
 	} catch (error) {
-		dispatch(fetchProductTypeFailure(error.response.data.error));
+		dispatch(fetchProductTypeFailure(error.response.data.message));
 		return false;
 	}
 };

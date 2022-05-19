@@ -27,7 +27,7 @@ export const getAllProducts = () => async (dispatch) => {
 		dispatch(fetchProductSuccess(products));
 		return true;
 	} catch (error) {
-		dispatch(fetchProductFailure(error.response.data.error));
+		dispatch(fetchProductFailure(error.response.data.message));
 		return false;
 	}
 };

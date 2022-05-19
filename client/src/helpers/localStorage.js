@@ -1,4 +1,4 @@
-export const setWithExpiry = (key, value, expiryTime) => {
+export const setWithExpiry = (key, value, expiryTime = 259200000) => {
 	const now = new Date();
 	const item = {
 		value,

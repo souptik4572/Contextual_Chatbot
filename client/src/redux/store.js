@@ -8,6 +8,7 @@ import productTypeReducer from './productType/productType.reducer';
 import orderTypeReducer from './orderType/orderType.reducer';
 import orderStatusReducer from './orderStatus/orderStatus.reducer';
 import productReducer from './product/product.reducer';
+import orderReducer from './order/order.reducer';
 
 const rootReducer = combineReducers({
 	admin: adminAuthReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
 	product: productReducer,
 	orderType: orderTypeReducer,
 	orderStatus: orderStatusReducer,
+	order: orderReducer,
 });
 
 const store = configureStore({
