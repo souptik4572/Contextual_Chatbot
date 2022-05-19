@@ -1,10 +1,14 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { adminLogin, getAllOrderTypes, getAllProductTypes } from '../redux';
+import { adminLogin, getAllOrderStatuses, getAllOrderTypes, getAllProductTypes } from '../redux';
 
 const Test = () => {
 	// const { token, adminType } = useSelector((state) => state.admin);
 	const dispatch = useDispatch();
+	const fetchOrderStatuses = async () => {
+		const result = await dispatch(getAllOrderStatuses());
+		console.log(result);
+	};
 	const fetchOrderTypes = async () => {
 		const result = await dispatch(getAllOrderTypes());
 		console.log(result);
@@ -20,7 +24,7 @@ const Test = () => {
 	return (
 		<div className='Test'>
 			<h1>This is for sample testing</h1>
-			<button onClick={fetchOrderTypes}>Submit</button>
+			<button onClick={fetchOrderStatuses}>Submit</button>
 		</div>
 	);
 };
