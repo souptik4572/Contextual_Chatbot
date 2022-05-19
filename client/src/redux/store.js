@@ -5,10 +5,12 @@ import thunk from 'redux-thunk';
 
 import adminAuthReducer from './admin/admin.reducer';
 import productTypeReducer from './productType/productType.reducer';
+import orderTypeReducer from './orderType/orderType.reducer';
 
 const rootReducer = combineReducers({
 	admin: adminAuthReducer,
 	productType: productTypeReducer,
+	orderType: orderTypeReducer,
 });
 
 const store = configureStore({
