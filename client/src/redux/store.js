@@ -9,9 +9,11 @@ import orderTypeReducer from './orderType/orderType.reducer';
 import orderStatusReducer from './orderStatus/orderStatus.reducer';
 import productReducer from './product/product.reducer';
 import orderReducer from './order/order.reducer';
+import userReducer from './user/user.reducer';
 
 const rootReducer = combineReducers({
 	admin: adminAuthReducer,
+	user: userReducer,
 	productType: productTypeReducer,
 	product: productReducer,
 	orderType: orderTypeReducer,

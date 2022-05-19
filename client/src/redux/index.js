@@ -9,3 +9,5 @@ export { getAllOrderStatuses } from './orderStatus/orderStatus.actions';
 export { getAllProducts } from './product/product.actions';
 
 export { getAllOrders } from './order/order.actions';
+
+export { getAllUsers } from './user/user.actions';

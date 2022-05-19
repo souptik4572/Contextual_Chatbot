@@ -7,11 +7,16 @@ import {
 	getAllOrderTypes,
 	getAllProducts,
 	getAllProductTypes,
+	getAllUsers,
 } from '../redux';
 
 const Test = () => {
 	// const { token, adminType } = useSelector((state) => state.admin);
 	const dispatch = useDispatch();
+	const fetchUsers = async () => {
+		const result = await dispatch(getAllUsers());
+		console.log(result);
+	};
 	const fetchOrders = async () => {
 		const result = await dispatch(getAllOrders());
 		console.log(result);
@@ -40,7 +45,7 @@ const Test = () => {
 		<div className='Test'>
 			<h1>This is for sample testing</h1>
 			<button onClick={submitLoginCredentials}>Login Admin</button>
-			<button onClick={fetchOrders}>Submit</button>
+			<button onClick={fetchUsers}>Submit</button>
 		</div>
 	);
 };
