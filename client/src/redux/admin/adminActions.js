@@ -1,4 +1,9 @@
-import { ADMIN_AUTH_REQUEST, ADMIN_AUTH_SUCCESS, ADMIN_AUTH_FAILURE } from './adminTypes';
+import {
+	ADMIN_AUTH_REQUEST,
+	ADMIN_AUTH_SUCCESS,
+	ADMIN_AUTH_FAILURE,
+	ADMIN_AUTH_LOGOUT,
+} from './adminTypes';
 import axios from '../../axios';
 import { setWithExpiry } from '../../helpers/localStorage';
 
@@ -19,6 +24,10 @@ export const adminLoginFailure = (errorMessage) => ({
 	payload: errorMessage,
 });
 
+export const adminLogoutSuccess = () => ({
+	type: ADMIN_AUTH_LOGOUT,
+});
+
 export const adminLogin = (email, password) => async (dispatch) => {
 	dispatch(adminLoginRequest());
 	try {
@@ -32,4 +41,8 @@ export const adminLogin = (email, password) => async (dispatch) => {
 		dispatch(adminLoginFailure(error.response.data.error));
 		return false;
 	}
+};
+
+export const adminLogout = () => async (dispatch) => {
+	dispatch(adminLogoutSuccess());
 };

@@ -1,5 +1,10 @@
 import { getWithExpiry } from '../../helpers/localStorage';
-import { ADMIN_AUTH_REQUEST, ADMIN_AUTH_SUCCESS, ADMIN_AUTH_FAILURE } from './adminTypes';
+import {
+	ADMIN_AUTH_REQUEST,
+	ADMIN_AUTH_SUCCESS,
+	ADMIN_AUTH_FAILURE,
+	ADMIN_AUTH_LOGOUT,
+} from './adminTypes';
 
 const initialState = {
 	loading: false,
@@ -28,6 +33,14 @@ const adminAuthReducer = async (state = initialState, action) => {
 				loading: false,
 				error: true,
 				message: payload,
+			};
+		case ADMIN_AUTH_LOGOUT:
+			return {
+				loading: false,
+				error: false,
+				message: 'Logged out successfully',
+				token: null,
+				adminType: null,
 			};
 		default:
 			return state;
