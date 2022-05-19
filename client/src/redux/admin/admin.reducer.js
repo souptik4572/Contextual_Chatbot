@@ -4,7 +4,7 @@ import {
 	ADMIN_AUTH_SUCCESS,
 	ADMIN_AUTH_FAILURE,
 	ADMIN_AUTH_LOGOUT,
-} from './adminTypes';
+} from './admin.types';
 
 const initialState = {
 	loading: false,
@@ -14,7 +14,7 @@ const initialState = {
 	adminType: getWithExpiry('adminType'),
 };
 
-const adminAuthReducer = async (state = initialState, action) => {
+const adminAuthReducer = (state = initialState, action) => {
 	const { type, payload } = action;
 	switch (type) {
 		case ADMIN_AUTH_REQUEST:

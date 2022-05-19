@@ -3,7 +3,7 @@ import {
 	ADMIN_AUTH_SUCCESS,
 	ADMIN_AUTH_FAILURE,
 	ADMIN_AUTH_LOGOUT,
-} from './adminTypes';
+} from './admin.types';
 import axios from '../../axios';
 import { setWithExpiry } from '../../helpers/localStorage';
 
@@ -31,7 +31,7 @@ export const adminLogoutSuccess = () => ({
 export const adminLogin = (email, password) => async (dispatch) => {
 	dispatch(adminLoginRequest());
 	try {
-		const response = await axios.post('/admin/login', { email, password });
+		const response = await axios.post('/admins/login', { email, password });
 		const { token, adminType } = response.data.data;
 		setWithExpiry('token', token);
 		setWithExpiry('adminType', adminType);
@@ -45,4 +45,6 @@ export const adminLogin = (email, password) => async (dispatch) => {
 
 export const adminLogout = () => async (dispatch) => {
 	dispatch(adminLogoutSuccess());
+	setWithExpiry('token', null);
+	setWithExpiry('adminType', null);
 };

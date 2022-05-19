@@ -3,10 +3,12 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 
-import adminAuthReducer from './admin/adminReducer';
+import adminAuthReducer from './admin/admin.reducer';
+import productTypeReducer from './productType/productType.reducer';
 
 const rootReducer = combineReducers({
 	admin: adminAuthReducer,
+	productType: productTypeReducer,
 });
 
 const store = configureStore({
