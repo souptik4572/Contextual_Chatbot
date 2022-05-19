@@ -7,10 +7,12 @@ import adminAuthReducer from './admin/admin.reducer';
 import productTypeReducer from './productType/productType.reducer';
 import orderTypeReducer from './orderType/orderType.reducer';
 import orderStatusReducer from './orderStatus/orderStatus.reducer';
+import productReducer from './product/product.reducer';
 
 const rootReducer = combineReducers({
 	admin: adminAuthReducer,
 	productType: productTypeReducer,
+	product: productReducer,
 	orderType: orderTypeReducer,
 	orderStatus: orderStatusReducer,
 });
