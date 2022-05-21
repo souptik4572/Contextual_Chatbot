@@ -67,7 +67,7 @@ export const getAllUsers = () => async (dispatch, getState) => {
 export const userLogin = (email, password) => async (dispatch) => {
 	dispatch(userLoginRequest());
 	try {
-		const response = await axios.post('/admins/login', { email, password });
+		const response = await axios.post('/users/login', { email, password });
 		const { token } = response.data.data;
 		setWithExpiry('user-token', token);
 		dispatch(userLoginSuccess(token));
