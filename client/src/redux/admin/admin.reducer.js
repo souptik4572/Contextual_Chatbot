@@ -10,7 +10,7 @@ const initialState = {
 	loading: false,
 	error: false,
 	message: '',
-	token: getWithExpiry('token'),
+	token: getWithExpiry('admin-token'),
 	adminType: getWithExpiry('adminType'),
 };
 

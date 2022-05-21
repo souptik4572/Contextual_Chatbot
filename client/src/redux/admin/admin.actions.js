@@ -33,7 +33,7 @@ export const adminLogin = (email, password) => async (dispatch) => {
 	try {
 		const response = await axios.post('/admins/login', { email, password });
 		const { token, adminType } = response.data.data;
-		setWithExpiry('token', token);
+		setWithExpiry('admin-token', token);
 		setWithExpiry('adminType', adminType);
 		dispatch(adminLoginSuccess(token, adminType));
 		return true;
@@ -45,6 +45,6 @@ export const adminLogin = (email, password) => async (dispatch) => {
 
 export const adminLogout = () => async (dispatch) => {
 	dispatch(adminLogoutSuccess());
-	setWithExpiry('token', null);
+	setWithExpiry('admin-token', null);
 	setWithExpiry('adminType', null);
 };
