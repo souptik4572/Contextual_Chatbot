@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../axios';
 import { FETCH_FAQ_REQUEST, FETCH_FAQ_SUCCESS, FETCH_FAQ_FAILURE } from './faq.types';
 
 export const fetchFaqRequest = () => ({
