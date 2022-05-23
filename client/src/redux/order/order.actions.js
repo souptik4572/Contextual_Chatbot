@@ -21,7 +21,6 @@ export const getAllOrders = () => async (dispatch, getState) => {
 		const {
 			admin: { token },
 		} = getState();
-		console.log(getState());
 		const response = await axios.get('/orders', {
 			headers: {
 				Authorization: `Bearer ${token}`,
