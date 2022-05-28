@@ -68,8 +68,9 @@ export const userLogin = (email, password) => async (dispatch) => {
 	dispatch(userLoginRequest());
 	try {
 		const response = await axios.post('/users/login', { email, password });
-		const { token } = response.data.data;
+		const { name, token } = response.data.data;
 		setWithExpiry('user-token', token);
+		setWithExpiry('user-name', name);
 		dispatch(userLoginSuccess(token));
 		return true;
 	} catch (error) {
@@ -81,4 +82,5 @@ export const userLogin = (email, password) => async (dispatch) => {
 export const userLogout = () => async (dispatch) => {
 	dispatch(userLogoutSuccess());
 	setWithExpiry('user-token', null);
+	setWithExpiry('user-name', null);
 };
