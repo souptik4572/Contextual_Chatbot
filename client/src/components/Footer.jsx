@@ -1,4 +1,4 @@
-import { Grid, Link, Typography } from "@mui/material";
+import { GlobalStyles, Grid, Link, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import React from "react";
 import Copyright from "./Copyright";
@@ -44,6 +44,9 @@ const Footer = () => {
         py: [3, 6],
       }}
     >
+      <GlobalStyles
+        styles={{ ul: { margin: 0, padding: 0, listStyle: "none" } }}
+      />
       <Grid container spacing={4} justifyContent="space-evenly">
         {footers.map((footer) => (
           <Grid item xs={6} sm={3} key={footer.title}>

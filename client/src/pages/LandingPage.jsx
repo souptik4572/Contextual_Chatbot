@@ -1,8 +1,6 @@
 import * as React from "react";
-import CssBaseline from "@mui/material/CssBaseline";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import GlobalStyles from "@mui/material/GlobalStyles";
 import Container from "@mui/material/Container";
 import { ArrowForward } from "@mui/icons-material";
 import TabBar from "../components/TabBar";
@@ -12,10 +10,6 @@ import Footer from "../components/Footer";
 const LandingPage = () => {
   return (
     <React.Fragment>
-      <GlobalStyles
-        styles={{ ul: { margin: 0, padding: 0, listStyle: "none" } }}
-      />
-      <CssBaseline />
       <Appbar />
       {/* Hero unit */}
       <Container
