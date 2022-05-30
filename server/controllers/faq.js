@@ -5,18 +5,25 @@ import { doesAllExist, doesFaqExist } from '../helpers/searchModels.js';
 import { createFaqValidator } from '../validations/faq.js';
 
 export const filterFaqs = async (req, res) => {
-	const { orderId, productId, orderStatusId, orderTypeId, userId, productTypeId, parentFaqId } =
-		req.query;
+	const {
+		orderId,
+		productId,
+		orderStatusId,
+		orderTypeId,
+		userId,
+		productTypeId,
+		parentFaqId,
+	} = req.query;
 	try {
 		const faqs = await prisma.faq.findMany({
 			where: {
-				userId,
-				orderId,
-				productTypeId,
-				productId,
-				orderStatusId,
-				orderTypeId,
-				parentFaqId,
+				userId: userId || null,
+				orderId: orderId || null,
+				productTypeId: productTypeId || null,
+				productId: productId || null,
+				orderStatusId: orderStatusId || null,
+				orderTypeId: orderTypeId || null,
+				parentFaqId: parentFaqId || null,
 			},
 			include: {
 				childFaqs: 1,

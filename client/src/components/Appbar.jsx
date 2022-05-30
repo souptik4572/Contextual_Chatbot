@@ -1,5 +1,5 @@
 import { AppBar, Button, Link, Toolbar, Typography, Avatar } from '@mui/material';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { DialogAuth } from 'react-mui-auth-page';
 import { useSelector, useDispatch } from 'react-redux';
 import { userLogin } from '../redux/user/user.actions';
