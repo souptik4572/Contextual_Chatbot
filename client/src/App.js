@@ -9,7 +9,6 @@ import MutualFunds from './pages/MutualFunds';
 import FixedDeposits from './pages/FixedDeposits';
 import USStocks from './pages/USStocks';
 import Chatbot from './pages/Chatbot';
-import Test from './testing/Test';
 
 let theme = createTheme({
 	palette: {
@@ -49,26 +48,21 @@ let theme = createTheme({
 
 function App() {
 	return (
-		<div className='App'>
-			<header className='App-header'>
-				<Test />
-			</header>
-		</div>
-		// <ThemeProvider theme={theme}>
-		//   <BrowserRouter>
-		//     <Routes>
-		//       <Route path="/" element={<LandingPage />} />
-		//       <Route path="/stocks" element={<Stocks />} />
-		//       <Route path="/mutual-funds" element={<MutualFunds />} />
-		//       <Route path="/fixed-deposit" element={<FixedDeposits />} />
-		//       <Route path="/us-stocks" element={<USStocks />} />
-		//       <Route path="/products" element={<ProductsPage />} />
-		//     </Routes>
-		//   </BrowserRouter>
-		//   <ThemeProvider2 theme={theme}>
-		//     <Chatbot />
-		//   </ThemeProvider2>
-		// </ThemeProvider>
+		<ThemeProvider theme={theme}>
+			<BrowserRouter>
+				<Routes>
+					<Route path='/' element={<LandingPage />} />
+					<Route path='/stocks' element={<Stocks />} />
+					<Route path='/mutual-funds' element={<MutualFunds />} />
+					<Route path='/fixed-deposit' element={<FixedDeposits />} />
+					<Route path='/us-stocks' element={<USStocks />} />
+					<Route path='/products' element={<ProductsPage />} />
+				</Routes>
+			</BrowserRouter>
+			<ThemeProvider2 theme={theme}>
+				<Chatbot />
+			</ThemeProvider2>
+		</ThemeProvider>
 	);
 }
 
