@@ -11,6 +11,7 @@ import USStocks from "./pages/USStocks";
 import Chatbot from "./pages/Chatbot";
 import { theme } from "./theme";
 import LayoutPage from "./pages/LayoutPage";
+import Product from "./pages/Product";
 
 function App() {
   return (
@@ -24,10 +25,22 @@ function App() {
           <Route path="/" element={<LayoutPage />}>
             <Route path="" element={<LandingPage />} />
             <Route path="products" element={<ProductsPage />} />
-            <Route path="stocks" element={<Stocks />} />
-            <Route path="mutual-funds" element={<MutualFunds />} />
-            <Route path="fixed-deposit" element={<FixedDeposits />} />
-            <Route path="us-stocks" element={<USStocks />} />
+            <Route path="stocks">
+              <Route path="" element={<Stocks />} />
+              <Route path=":productId" element={<Product />} />
+            </Route>
+            <Route path="mutual-funds">
+              <Route path="" element={<MutualFunds />} />
+              <Route path=":productId" element={<Product />} />
+            </Route>
+            <Route path="fixed-deposit">
+              <Route path="" element={<FixedDeposits />} />
+              <Route path=":productId" element={<Product />} />
+            </Route>
+            <Route path="us-stocks">
+              <Route path="" element={<USStocks />} />
+              <Route path=":productId" element={<Product />} />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

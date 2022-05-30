@@ -7,7 +7,7 @@ import CardHeader from "@mui/material/CardHeader";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { Link as Link2, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const tiers = [
   {
