@@ -4,14 +4,10 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
-import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import GlobalStyles from "@mui/material/GlobalStyles";
 import Container from "@mui/material/Container";
-import { Link as Link2 } from "react-router-dom";
-import Appbar from "../components/Appbar";
-import Footer from "../components/Footer";
+import { Link as Link2, useNavigate } from "react-router-dom";
 
 const tiers = [
   {
@@ -45,14 +41,9 @@ const tiers = [
 ];
 
 const ProductsPage = (dialogState = false) => {
+  const navigate = useNavigate();
   return (
     <React.Fragment>
-      <GlobalStyles
-        styles={{ ul: { margin: 0, padding: 0, listStyle: "none" } }}
-      />
-      <CssBaseline />
-      <Appbar />
-      {/* Hero unit */}
       <Container
         disableGutters
         maxWidth="lg"
@@ -115,8 +106,14 @@ const ProductsPage = (dialogState = false) => {
                   </ul>
                 </CardContent>
                 <CardActions>
-                  <Button fullWidth variant="outlined">
-                    <Link2 to={tier.link}>Explore</Link2>
+                  <Button
+                    fullWidth
+                    variant="outlined"
+                    onClick={() => {
+                      navigate(tier.link);
+                    }}
+                  >
+                    Explore
                   </Button>
                 </CardActions>
               </Card>
@@ -124,8 +121,6 @@ const ProductsPage = (dialogState = false) => {
           ))}
         </Grid>
       </Container>
-      {/* Footer */}
-      <Footer />
     </React.Fragment>
   );
 };

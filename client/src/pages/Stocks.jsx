@@ -1,16 +1,11 @@
 import * as React from "react";
 import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
 import Container from "@mui/material/Container";
-import Appbar from "../components/Appbar";
-import Footer from "../components/Footer";
 import { Button, CardMedia, Grid } from "@mui/material";
 
 const Stocks = () => {
   return (
     <React.Fragment>
-      <Appbar />
-      {/* Hero unit */}
       <Container
         disableGutters
         maxWidth="lg"
@@ -61,10 +56,6 @@ const Stocks = () => {
           </Button>
         </Grid>
       </Container>
-      {/* hyperlink */}
-      {/* Footer */}
-      <Footer />
-      {/* End footer */}
     </React.Fragment>
   );
 };

@@ -4,14 +4,10 @@ import Link from "@mui/material/Link";
 import Container from "@mui/material/Container";
 import { ArrowForward } from "@mui/icons-material";
 import TabBar from "../components/TabBar";
-import Appbar from "../components/Appbar";
-import Footer from "../components/Footer";
 
 const LandingPage = () => {
   return (
     <React.Fragment>
-      <Appbar />
-      {/* Hero unit */}
       <Container
         disableGutters
         maxWidth="lg"
@@ -50,9 +46,6 @@ const LandingPage = () => {
           View all Products <ArrowForward size="small" />
         </Link>
       </Typography>
-      {/* Footer */}
-      <Footer />
-      {/* End footer */}
     </React.Fragment>
   );
 };

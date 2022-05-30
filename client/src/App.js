@@ -10,6 +10,7 @@ import FixedDeposits from "./pages/FixedDeposits";
 import USStocks from "./pages/USStocks";
 import Chatbot from "./pages/Chatbot";
 import { theme } from "./theme";
+import LayoutPage from "./pages/LayoutPage";
 
 function App() {
   return (
@@ -20,12 +21,14 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/stocks" element={<Stocks />} />
-          <Route path="/mutual-funds" element={<MutualFunds />} />
-          <Route path="/fixed-deposit" element={<FixedDeposits />} />
-          <Route path="/us-stocks" element={<USStocks />} />
-          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/" element={<LayoutPage />}>
+            <Route path="" element={<LandingPage />} />
+            <Route path="products" element={<ProductsPage />} />
+            <Route path="stocks" element={<Stocks />} />
+            <Route path="mutual-funds" element={<MutualFunds />} />
+            <Route path="fixed-deposit" element={<FixedDeposits />} />
+            <Route path="us-stocks" element={<USStocks />} />
+          </Route>
         </Routes>
       </BrowserRouter>
       <ThemeProvider2 theme={theme}>
