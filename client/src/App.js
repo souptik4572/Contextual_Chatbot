@@ -12,6 +12,9 @@ import Chatbot from "./pages/Chatbot";
 import { theme } from "./theme";
 import LayoutPage from "./pages/LayoutPage";
 import Product from "./pages/Product";
+import OrdersPage from "./pages/OrdersPage";
+import NavBar from "./components/NavBar";
+import Order from "./pages/Order";
 
 function App() {
   return (
@@ -41,6 +44,15 @@ function App() {
               <Route path="" element={<USStocks />} />
               <Route path=":productId" element={<Product />} />
             </Route>
+          </Route>
+          <Route path="/user/order/" element={<LayoutPage />}>
+            <Route path="" element={<NavBar />}>
+              <Route path="stocks" element={<OrdersPage />} />
+              <Route path="mutual-funds" element={<OrdersPage />} />
+              <Route path="deposits" element={<OrdersPage />} />
+              <Route path="us-stocks" element={<OrdersPage />} />
+            </Route>
+            <Route path=":category/:orderId" element={<Order />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -33,6 +33,8 @@ const footers = [
   },
 ];
 
+/* Dont display Footer if logged in */
+
 const Footer = () => {
   return (
     <Container
@@ -45,7 +47,9 @@ const Footer = () => {
       }}
     >
       <GlobalStyles
-        styles={{ ul: { margin: 0, padding: 0, listStyle: "none" } }}
+        styles={{
+          ul: { margin: 0, padding: 0, listStyle: "none" },
+        }}
       />
       <Grid container spacing={4} justifyContent="space-evenly">
         {footers.map((footer) => (
