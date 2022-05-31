@@ -1,14 +1,7 @@
 import * as React from "react";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Divider,
-} from "@mui/material";
+import { Button, Card, CardActions, CardContent, Divider } from "@mui/material";
 import { Link, useParams } from "react-router-dom";
 
 const Order = () => {
@@ -39,7 +32,7 @@ const Order = () => {
             </Typography>
             <Divider />
             <Typography variant="body2">
-              Order Id: 101
+              Order Id: {orderId}
               <br />
               placed on
             </Typography>

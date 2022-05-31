@@ -2,24 +2,21 @@ import * as React from "react";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import {
-  Avatar,
   Button,
-  CardMedia,
   Checkbox,
   Divider,
   FormControlLabel,
   Grid,
   InputAdornment,
   ListItem,
-  ListItemAvatar,
   ListItemButton,
   ListItemText,
   Paper,
   Stack,
   TextField,
 } from "@mui/material";
-import { useNavigate, useParams } from "react-router-dom";
-import { ArrowForward, Search, Share } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import { ArrowForward, Search } from "@mui/icons-material";
 
 const orderId = "101";
 

@@ -1,6 +1,6 @@
 import { ThemeProvider as ThemeProvider2 } from "styled-components";
 import { ThemeProvider } from "@mui/material/styles";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import LandingPage from "./pages/LandingPage";
 import ProductsPage from "./pages/ProductsPage";
@@ -54,6 +54,7 @@ function App() {
             </Route>
             <Route path=":category/:orderId" element={<Order />} />
           </Route>
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
       <ThemeProvider2 theme={theme}>
