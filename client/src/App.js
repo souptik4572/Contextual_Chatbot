@@ -1,6 +1,6 @@
 import { ThemeProvider as ThemeProvider2 } from "styled-components";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "@mui/material/styles";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import LandingPage from "./pages/LandingPage";
 import ProductsPage from "./pages/ProductsPage";
@@ -9,42 +9,12 @@ import MutualFunds from "./pages/MutualFunds";
 import FixedDeposits from "./pages/FixedDeposits";
 import USStocks from "./pages/USStocks";
 import Chatbot from "./pages/Chatbot";
-
-let theme = createTheme({
-  palette: {
-    primary: {
-      main: "hsl(165, 100%, 41%)",
-      light: "hsl(165, 100%, 51%)",
-      dark: "hsl(165, 100%, 21%)",
-    },
-    secondary: {
-      main: "#fff",
-      light: "",
-      dark: "",
-    },
-  },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          backgroundColor: "hsl(165, 100%, 41%)",
-          color: "#fff",
-        },
-      },
-    },
-  },
-
-  // chatbot
-  background: "#f5f8fb",
-  fontFamily: "Helvetica Neue",
-  headerBgColor: "hsl(165, 100%, 41%)",
-  headerFontColor: "#fff",
-  headerFontSize: "16px",
-  botBubbleColor: "hsl(165, 100%, 41%)",
-  botFontColor: "#fff",
-  userBubbleColor: "#fff",
-  userFontColor: "hsla(10, 10%, 10%, 1)",
-});
+import { theme } from "./theme";
+import LayoutPage from "./pages/LayoutPage";
+import Product from "./pages/Product";
+import OrdersPage from "./pages/OrdersPage";
+import NavBar from "./components/NavBar";
+import Order from "./pages/Order";
 
 function App() {
   return (
@@ -55,12 +25,36 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/stocks" element={<Stocks />} />
-          <Route path="/mutual-funds" element={<MutualFunds />} />
-          <Route path="/fixed-deposit" element={<FixedDeposits />} />
-          <Route path="/us-stocks" element={<USStocks />} />
-          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/" element={<LayoutPage />}>
+            <Route path="" element={<LandingPage />} />
+            <Route path="products" element={<ProductsPage />} />
+            <Route path="stocks">
+              <Route path="" element={<Stocks />} />
+              <Route path=":productId" element={<Product />} />
+            </Route>
+            <Route path="mutual-funds">
+              <Route path="" element={<MutualFunds />} />
+              <Route path=":productId" element={<Product />} />
+            </Route>
+            <Route path="fixed-deposit">
+              <Route path="" element={<FixedDeposits />} />
+              <Route path=":productId" element={<Product />} />
+            </Route>
+            <Route path="us-stocks">
+              <Route path="" element={<USStocks />} />
+              <Route path=":productId" element={<Product />} />
+            </Route>
+          </Route>
+          <Route path="/user/order/" element={<LayoutPage />}>
+            <Route path="" element={<NavBar />}>
+              <Route path="stocks" element={<OrdersPage />} />
+              <Route path="mutual-funds" element={<OrdersPage />} />
+              <Route path="deposits" element={<OrdersPage />} />
+              <Route path="us-stocks" element={<OrdersPage />} />
+            </Route>
+            <Route path=":category/:orderId" element={<Order />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
       <ThemeProvider2 theme={theme}>

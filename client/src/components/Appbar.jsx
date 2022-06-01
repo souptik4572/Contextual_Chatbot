@@ -39,7 +39,7 @@ const Appbar = () => {
     >
       <Toolbar sx={{ flexWrap: "wrap" }}>
         <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-          GROWW
+          <Link href="/">GROWW</Link>
         </Typography>
         <nav>
           <Link
