@@ -1,31 +1,36 @@
-import { AppBar, Button, Link, Toolbar, Typography } from "@mui/material";
-import React from "react";
-import { DialogAuth } from "react-mui-auth-page";
+import { AppBar, Button, Link, Toolbar, Typography, Avatar } from '@mui/material';
+import React from 'react';
+import { DialogAuth } from 'react-mui-auth-page';
+import { useSelector, useDispatch } from 'react-redux';
+import { userLogin } from '../redux/user/user.actions';
+import { stringAvatar } from '../helpers/createAvatar';
 
 const Appbar = () => {
-  const [open, setOpen] = React.useState(false);
+	const [open, setOpen] = React.useState(false);
+	const dispatch = useDispatch();
+	const { name } = useSelector((state) => state.user);
 
-  const handleSignIn = ({ email, password }) => {
-    console.log({ email, password });
-  };
-  const handleSignUp = async ({ email, name, password }) => {
-    setTimeout(() => {
-      console.log("HELLO");
-    }, 2000);
-  };
-  const handleForget = ({ email }) => {
-    console.log({ email });
-  };
+	const handleSignIn = ({ email, password }) => {
+		dispatch(userLogin(email, password));
+	};
+	const handleSignUp = async ({ email, name, password }) => {
+		setTimeout(() => {
+			console.log('HELLO');
+		}, 2000);
+	};
+	const handleForget = ({ email }) => {
+		console.log({ email });
+	};
 
-  const handleSocial = {
-    Google: () => {},
-    Github: () => {},
-    Twitter: () => {},
-  };
+	const handleSocial = {
+		Google: () => {},
+		Github: () => {},
+		Twitter: () => {},
+	};
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+	const handleClickOpen = () => {
+		setOpen(true);
+	};
 
   const handleClose = () => {
     setOpen(false);

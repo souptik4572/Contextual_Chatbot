@@ -1,4 +1,5 @@
 import axios from '../../axios';
+import { notNullObject } from '../../helpers/createNonNullObjects';
 import { FETCH_FAQ_REQUEST, FETCH_FAQ_SUCCESS, FETCH_FAQ_FAILURE } from './faq.types';
 
 export const fetchFaqRequest = () => ({
@@ -15,11 +16,28 @@ export const fetchFaqFailure = (errorMessage) => ({
 	payload: errorMessage,
 });
 
-export const getAllFaqs = () => async (dispatch, getState) => {
+export const getAllFaqs = ({
+	orderId = null,
+	productId = null,
+	orderStatusId = null,
+	orderTypeId = null,
+	userId = null,
+	productTypeId = null,
+	parentFaqId = null,
+}) => async (dispatch, getState) => {
 	dispatch(fetchFaqRequest());
 	try {
+		const filterFaqs = notNullObject({
+			orderId,
+			productId,
+			orderStatusId,
+			orderTypeId,
+			userId,
+			productTypeId,
+			parentFaqId,
+		});
 		const response = await axios.get('/faqs', {
-			params: {},
+			params: filterFaqs,
 		});
 		const { data: faqs } = response.data;
 		dispatch(fetchFaqSuccess(faqs));

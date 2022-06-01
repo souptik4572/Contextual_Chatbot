@@ -7,12 +7,14 @@ import {
 	USER_AUTH_FAILURE,
 	USER_AUTH_LOGOUT,
 } from './user.types';
+import { getWithExpiry } from '../../helpers/localStorage';
 
 const initialState = {
 	loading: false,
 	error: false,
 	message: '',
-	token: '',
+	name: getWithExpiry('user-name'),
+	token: getWithExpiry('user-token'),
 	data: [],
 };
 
@@ -52,6 +54,7 @@ const userReducer = (state = initialState, action) => {
 				error: false,
 				message: 'User had been logged in successfully',
 				token: payload.token,
+				name: payload.name,
 			};
 		case USER_AUTH_FAILURE:
 			return {
@@ -60,6 +63,7 @@ const userReducer = (state = initialState, action) => {
 				error: true,
 				message: payload,
 				token: null,
+				name: null,
 			};
 		case USER_AUTH_LOGOUT:
 			return {
@@ -68,6 +72,7 @@ const userReducer = (state = initialState, action) => {
 				error: false,
 				message: 'Logged out successfully',
 				token: null,
+				name: null,
 			};
 		default:
 			return state;
