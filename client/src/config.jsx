@@ -6,25 +6,24 @@ export const Answer = (props) => {
   console.log(props);
   const [loading, setLoading] = useState(true);
   const [result, setResult] = useState("");
-  const chosenQuestionId = props.previousStep.value;
+  const chosenQuestionId = props.previousStep.value.questionId;
+  const answer = props.previousStep.value.answer;
 
   const myFunc = async () => {
-                               //API CALL
-                               await new Promise((resolve) =>
-                                 setTimeout(resolve, 3000)
-                               );
-                               // answer to asked question (chosenQuestionId)
-                               // NOTE: We can get this in the previous step itself no need to make an extra call
+    //API CALL
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    // answer to asked question (chosenQuestionId)
+    // NOTE: We can get this in the previous step itself no need to make an extra call
 
-                               setResult("ANSWER TO " + chosenQuestionId);
-                               setLoading(false);
-                               // if (no more questions) {
-                               //   props.triggerNextStep({trigger: 3})
-                               // }
-                               props.triggerNextStep({
-                                 value: chosenQuestionId,
-                               });
-                             };
+    setResult(answer);
+    setLoading(false);
+    // if (no more questions) {
+    //   props.triggerNextStep({trigger: 3})
+    // }
+    props.triggerNextStep({
+      value: chosenQuestionId,
+    });
+  };
 
   useEffect(() => {
     myFunc();
@@ -75,7 +74,13 @@ export const Question = (props) => {
             >
               <ListItemButton
                 onClick={() =>
-                  props.triggerNextStep({ trigger: 2, value: question.value })
+                  props.triggerNextStep({
+                    trigger: 2,
+                    value: {
+                      questionId: question.value,
+                      answer: result[question].description,
+                    },
+                  })
                 }
               >
                 <ListItemText primary={question.label} />
