@@ -12,6 +12,7 @@ const Appbar = () => {
 
 	const handleSignIn = ({ email, password }) => {
 		dispatch(userLogin(email, password));
+		handleClose();
 	};
 	const handleSignUp = async ({ email, name, password }) => {
 		setTimeout(() => {

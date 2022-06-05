@@ -28,10 +28,11 @@ export const userLoginRequest = () => ({
 	type: USER_AUTH_REQUEST,
 });
 
-export const userLoginSuccess = (token) => ({
+export const userLoginSuccess = (token, name) => ({
 	type: USER_AUTH_SUCCESS,
 	payload: {
 		token,
+		name,
 	},
 });
 
@@ -71,7 +72,7 @@ export const userLogin = (email, password) => async (dispatch) => {
 		const { name, token } = response.data.data;
 		setWithExpiry('user-token', token);
 		setWithExpiry('user-name', name);
-		dispatch(userLoginSuccess(token));
+		dispatch(userLoginSuccess(token, name));
 		return true;
 	} catch (error) {
 		dispatch(userLoginFailure(error.response.data.message));
