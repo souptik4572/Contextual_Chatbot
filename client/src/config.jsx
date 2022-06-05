@@ -42,10 +42,6 @@ export const Question = (props) => {
 	const { data: filteredFaqs } = useSelector((state) => state.faq);
 	const dispatch = useDispatch();
 
-	useEffect(() => {
-		setResult(result.concat(filteredFaqs));
-	}, [filteredFaqs]);
-
 	const myFunc = async () => {
 		//API CALL to get Questions
 		await new Promise((resolve) => setTimeout(resolve, 2500));
@@ -53,12 +49,19 @@ export const Question = (props) => {
 		// If not the first anFaq
 		if (chosenQuestionId) {
 			//fetch questions where parentFaqId === chosenQuestionId
-			dispatch(getAllFaqs({ parentFaqId: chosenQuestionId }));
-			await new Promise((resolve) => setTimeout(resolve, 2500));
-			if (filteredFaqs.length === 0) dispatch(getAllFaqs({}));
+			let currentFaqs = await dispatch(getAllFaqs({ parentFaqId: chosenQuestionId }));
+			// await new Promise((resolve) => setTimeout(resolve, 2500));
+			if (currentFaqs.length === 0) {
+				currentFaqs = await dispatch(getAllFaqs({}));
+			}
+			setResult(currentFaqs);
 		} else {
 			// fetch questions where parentFaqId === -1 & filter(user, kyc, url/page)
-			if (filteredFaqs.length === 0) await dispatch(getAllFaqs({}));
+			if (filteredFaqs.length === 0) {
+				let currentFaqs = await dispatch(getAllFaqs({}));
+				console.log(currentFaqs);
+				setResult(currentFaqs);
+			}
 		}
 		setLoading(false);
 	};
@@ -106,8 +109,7 @@ export const Question = (props) => {
 };
 
 // API Reference: https://lucasbassetti.com.br/react-simple-chatbot/#/docs/installation
-export const name = 'Rishabh';
-export const steps = [
+export const steps = (name) => [
 	{
 		id: '0',
 		message: `Hello ${name}! How can I help you?`,
@@ -119,13 +121,6 @@ export const steps = [
 		component: <Question />,
 		trigger: '2',
 		asMessage: true,
-
-		// options: [
-		//   { value: 1, label: "anFaq 1", trigger: "2" },
-		//   { value: 2, label: "anFaq 2", trigger: "2" },
-		//   { value: 3, label: "anFaq 3", trigger: "2" },
-		//   { value: 4, label: "Thank You", trigger: "3" },
-		// ],
 	},
 	{
 		id: '2',
