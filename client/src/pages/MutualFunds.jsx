@@ -2,8 +2,10 @@ import * as React from "react";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Button, CardMedia, Grid } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const MutualFunds = () => {
+  const navigate = useNavigate();
   return (
     <React.Fragment>
       <Container
@@ -41,17 +43,13 @@ const MutualFunds = () => {
             </Typography>
           </Grid>
           <Grid item xs={6}>
-            <CardMedia
-              component="img"
-              image="/stocks.png"
-              alt="image"
-              // sx={{
-              //   height: "60%",
-              //   width: "60%",
-              // }}
-            />
+            <CardMedia component="img" image="/stocks.png" alt="image" />
           </Grid>
-          <Button onClick={null} variant="contained" sx={{ my: 1, mx: 1.5 }}>
+          <Button
+            onClick={() => navigate("filter")}
+            variant="contained"
+            sx={{ my: 1, mx: 1.5 }}
+          >
             Explore all Mutual Funds
           </Button>
         </Grid>
