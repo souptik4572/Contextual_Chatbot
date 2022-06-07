@@ -13,15 +13,11 @@ import { theme } from "./theme";
 import LayoutPage from "./pages/LayoutPage";
 import Product from "./pages/Product";
 import OrdersPage from "./pages/OrdersPage";
-import NavBar from "./components/NavBar";
 import Order from "./pages/Order";
+import ListProductsPage from "./pages/ListProductsPage.jsx";
 
 function App() {
   return (
-    // <div className="App">
-    //   <header className="App-header">
-    //   </header>
-    // </div>
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Routes>
@@ -30,28 +26,43 @@ function App() {
             <Route path="products" element={<ProductsPage />} />
             <Route path="stocks">
               <Route path="" element={<Stocks />} />
+              <Route
+                path="filter"
+                element={<ListProductsPage path="stocks" />}
+              />
               <Route path=":productId" element={<Product />} />
             </Route>
             <Route path="mutual-funds">
               <Route path="" element={<MutualFunds />} />
+              <Route
+                path="filter"
+                element={<ListProductsPage path="mutual-funds" />}
+              />
               <Route path=":productId" element={<Product />} />
             </Route>
             <Route path="fixed-deposit">
               <Route path="" element={<FixedDeposits />} />
+              <Route
+                path="filter"
+                element={<ListProductsPage path="fixed-deposit" />}
+              />
               <Route path=":productId" element={<Product />} />
             </Route>
             <Route path="us-stocks">
               <Route path="" element={<USStocks />} />
+              <Route
+                path="filter"
+                element={<ListProductsPage path="us-stocks" />}
+              />
               <Route path=":productId" element={<Product />} />
             </Route>
           </Route>
-          <Route path="/user/order/" element={<LayoutPage />}>
-            <Route path="" element={<NavBar />}>
-              <Route path="stocks" element={<OrdersPage />} />
-              <Route path="mutual-funds" element={<OrdersPage />} />
-              <Route path="deposits" element={<OrdersPage />} />
-              <Route path="us-stocks" element={<OrdersPage />} />
-            </Route>
+          <Route path="/user/order" element={<LayoutPage />}>
+            <Route path="" element={<Navigate to="stocks" replace />} />
+            <Route path="stocks" element={<OrdersPage />} />
+            <Route path="mutual-funds" element={<OrdersPage />} />
+            <Route path="deposits" element={<OrdersPage />} />
+            <Route path="us-stocks" element={<OrdersPage />} />
             <Route path=":category/:orderId" element={<Order />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />

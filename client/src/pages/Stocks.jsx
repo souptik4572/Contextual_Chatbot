@@ -2,8 +2,10 @@ import * as React from "react";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Button, CardMedia, Grid } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Stocks = () => {
+  const navigate = useNavigate();
   return (
     <React.Fragment>
       <Container
@@ -51,7 +53,11 @@ const Stocks = () => {
               // }}
             />
           </Grid>
-          <Button onClick={null} variant="contained" sx={{ my: 1, mx: 1.5 }}>
+          <Button
+            onClick={() => navigate("filter")}
+            variant="contained"
+            sx={{ my: 1, mx: 1.5 }}
+          >
             Explore all stocks in India
           </Button>
         </Grid>

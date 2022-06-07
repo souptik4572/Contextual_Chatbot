@@ -17,19 +17,16 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { ArrowForward, Search } from "@mui/icons-material";
+import NavBar from "../components/NavBar";
 
-const orderId = "101";
+const orderId = "axis";
 
 const OrdersPage = () => {
   const navigate = useNavigate();
   return (
     <React.Fragment>
-      <Container
-        disableGutters
-        maxWidth="lg"
-        component="main"
-        sx={{ pt: 8, pb: 6 }}
-      >
+      <NavBar page="orders" />
+      <Container disableGutters maxWidth="lg" component="main" sx={{ pb: 6 }}>
         <Grid
           container
           rowSpacing={4}

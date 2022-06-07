@@ -3,7 +3,7 @@
 // /** @jsx jsx */
 
 import { Container, Divider } from "@mui/material";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { css, jsx } from "@emotion/react";
 
 const styles = {
@@ -22,16 +22,23 @@ const styles = {
   },
 };
 
-export default function NavBar() {
+export default function NavBar({ page = "explore" }) {
   return (
     <Container
       maxWidth="lg"
       component="main"
-      sx={{ pt: 8, pb: 6 }}
+      sx={{ pt: 4, pb: 6 }}
       disableGutters
     >
       <NavLink
-        to="/user/order/stocks"
+        replace
+        to={
+          page === "orders"
+            ? "/user/order/stocks"
+            : page === "items"
+            ? "/stocks/filter"
+            : "/stocks/user/explore"
+        }
         css={({ isActive }) =>
           isActive ? css(styles.active) : css(styles.inactive)
         }
@@ -40,7 +47,14 @@ export default function NavBar() {
       </NavLink>
 
       <NavLink
-        to="/user/order/mutual-funds"
+        replace
+        to={
+          page === "orders"
+            ? "/user/order/mutual-funds"
+            : page === "items"
+            ? "/mutual-funds/filter"
+            : "/mutual-funds/user/explore"
+        }
         css={({ isActive }) =>
           isActive ? css(styles.active) : css(styles.inactive)
         }
@@ -49,7 +63,14 @@ export default function NavBar() {
       </NavLink>
 
       <NavLink
-        to="/user/order/us-stocks"
+        replace
+        to={
+          page === "orders"
+            ? "/user/order/us-stocks"
+            : page === "items"
+            ? "/us-stocks/filter"
+            : "/us-stocks/user/explore"
+        }
         css={({ isActive }) =>
           isActive ? css(styles.active) : css(styles.inactive)
         }
@@ -58,7 +79,14 @@ export default function NavBar() {
       </NavLink>
 
       <NavLink
-        to="/user/order/deposits"
+        replace
+        to={
+          page === "orders"
+            ? "/user/order/deposits"
+            : page === "items"
+            ? "/fixed-deposit/filter"
+            : "/fixed-deposit/user/explore"
+        }
         css={({ isActive }) =>
           isActive ? css(styles.active) : css(styles.inactive)
         }
@@ -66,7 +94,6 @@ export default function NavBar() {
         Fixed Deposits
       </NavLink>
       <Divider />
-      <Outlet />
     </Container>
   );
 }
