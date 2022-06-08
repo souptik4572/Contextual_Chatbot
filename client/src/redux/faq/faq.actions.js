@@ -41,9 +41,9 @@ export const getAllFaqs = ({
 		});
 		const { data: faqs } = response.data;
 		dispatch(fetchFaqSuccess(faqs));
-		return true;
+		return faqs;
 	} catch (error) {
 		dispatch(fetchFaqFailure(error.response.data.message));
-		return false;
+		return [];
 	}
 };
