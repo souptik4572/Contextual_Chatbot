@@ -72,11 +72,7 @@ export const userLogin = (email, password) => async (dispatch) => {
 		const { name, token } = response.data.data;
 		setWithExpiry('user-token', token);
 		setWithExpiry('user-name', name);
-<<<<<<< HEAD
-		dispatch(userLoginSuccess(token));
-=======
 		dispatch(userLoginSuccess(token, name));
->>>>>>> 1e1063805c6632b7c3596cff08d03de4ad4232e8
 		return true;
 	} catch (error) {
 		dispatch(userLoginFailure(error.response.data.message));

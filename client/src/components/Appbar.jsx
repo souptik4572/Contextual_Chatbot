@@ -1,28 +1,3 @@
-<<<<<<< HEAD
-import { AppBar, Button, Link, Toolbar, Typography, Avatar } from '@mui/material';
-import React from 'react';
-import { DialogAuth } from 'react-mui-auth-page';
-import { useSelector, useDispatch } from 'react-redux';
-import { userLogin } from '../redux/user/user.actions';
-import { stringAvatar } from '../helpers/createAvatar';
-
-const Appbar = () => {
-	const [open, setOpen] = React.useState(false);
-	const dispatch = useDispatch();
-	const { name } = useSelector((state) => state.user);
-
-	const handleSignIn = ({ email, password }) => {
-		dispatch(userLogin(email, password));
-	};
-	const handleSignUp = async ({ email, name, password }) => {
-		setTimeout(() => {
-			console.log('HELLO');
-		}, 2000);
-	};
-	const handleForget = ({ email }) => {
-		console.log({ email });
-	};
-=======
 import {
   AppBar,
   Button,
@@ -62,7 +37,6 @@ const Appbar = () => {
   const handleForget = ({ email }) => {
     console.log({ email });
   };
->>>>>>> 1e1063805c6632b7c3596cff08d03de4ad4232e8
 
 	const handleSocial = {
 		Google: () => {},
