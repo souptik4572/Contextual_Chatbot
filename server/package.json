@@ -7,7 +7,8 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"devStart": "nodemon index.js",
-		"start": "node index.js"
+		"start": "node index.js",
+		"heroku-postbuild": "prisma migrate deploy"
 	},
 	"keywords": [],
 	"author": "",
