@@ -67,10 +67,10 @@ function App() {
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
+        <ThemeProvider2 theme={theme}>
+          <Chatbot />
+        </ThemeProvider2>
       </BrowserRouter>
-      <ThemeProvider2 theme={theme}>
-        <Chatbot />
-      </ThemeProvider2>
     </ThemeProvider>
   );
 }
