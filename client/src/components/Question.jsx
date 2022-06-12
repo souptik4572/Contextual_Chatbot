@@ -8,6 +8,7 @@ const Question = (props) => {
   const [loading, setLoading] = useState(true);
   const [result, setResult] = useState([]);
   const chosenQuestionId = props.previousStep.value;
+  const path = props.path;
 
   const { data: filteredFaqs } = useSelector((state) => state.faq);
   const dispatch = useDispatch();
@@ -24,7 +25,8 @@ const Question = (props) => {
       }
       setResult(currentFaqs);
     } else {
-      // fetch questions where parentFaqId === -1 & filter(user, kyc, url/page)
+      // fetch questions where parentFaqId === -1 & filter(user, kyc, url/page using path)
+      console.log(path);
       if (filteredFaqs.length === 0) {
         let currentFaqs = await dispatch(getAllFaqs({}));
         setResult(currentFaqs);
