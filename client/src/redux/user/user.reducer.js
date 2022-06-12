@@ -15,6 +15,7 @@ const initialState = {
 	message: '',
 	name: getWithExpiry('user-name'),
 	token: getWithExpiry('user-token'),
+	isVerified: getWithExpiry('user-is-verified'),
 	data: [],
 };
 
@@ -55,6 +56,7 @@ const userReducer = (state = initialState, action) => {
 				message: 'User had been logged in successfully',
 				token: payload.token,
 				name: payload.name,
+				isVerified: payload.isVerified,
 			};
 		case USER_AUTH_FAILURE:
 			return {
@@ -64,6 +66,7 @@ const userReducer = (state = initialState, action) => {
 				message: payload,
 				token: null,
 				name: null,
+				isVerified: null,
 			};
 		case USER_AUTH_LOGOUT:
 			return {
@@ -73,6 +76,7 @@ const userReducer = (state = initialState, action) => {
 				message: 'Logged out successfully',
 				token: null,
 				name: null,
+				isVerified: null,
 			};
 		default:
 			return state;

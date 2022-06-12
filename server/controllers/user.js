@@ -50,7 +50,11 @@ export const loginUser = async (req, res) => {
 			res,
 			status: StatusCodes.OK,
 			message: 'User has been successfully logged in',
-			data: { name: user.name, token: createJwt({ uniqueId: user.id }) },
+			data: {
+				name: user.name,
+				isVerified: user.isVerified,
+				token: createJwt({ uniqueId: user.id }),
+			},
 		});
 	} catch (error) {
 		return handleError({ res, message: error.message });
