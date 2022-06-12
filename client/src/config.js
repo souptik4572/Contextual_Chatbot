@@ -1,6 +1,6 @@
 import Question from "./components/Question";
 import Answer from "./components/Answer";
-// API Reference: https://lucasbassetti.com.br/react-simple-chatbot/#/docs/installation
+
 export const steps = (name) => [
   {
     id: "0",
