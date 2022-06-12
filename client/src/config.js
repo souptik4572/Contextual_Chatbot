@@ -1,7 +1,7 @@
 import Question from "./components/Question";
 import Answer from "./components/Answer";
-// API Reference: https://lucasbassetti.com.br/react-simple-chatbot/#/docs/installation
-export const steps = (name) => [
+
+export const steps = (name, path) => [
   {
     id: "0",
     message: `Hello ${name}! How can I help you?`,
@@ -10,7 +10,7 @@ export const steps = (name) => [
   {
     id: "1",
     waitAction: true,
-    component: <Question />,
+    component: <Question path={path} />,
     trigger: "2",
     asMessage: true,
   },
