@@ -27,6 +27,7 @@ const Question = (props) => {
     } else {
       // fetch questions where parentFaqId === -1 & filter(user, kyc, url/page using path)
       console.log(path);
+      console.log(path.split("/"));
       if (filteredFaqs.length === 0) {
         let currentFaqs = await dispatch(getAllFaqs({}));
         setResult(currentFaqs);
