@@ -57,15 +57,7 @@ const Product = () => {
                 1Y annualized
               </Typography>
             </Typography>
-            <CardMedia
-              component="img"
-              image="/stock.png"
-              alt="image"
-              // sx={{
-              //   height: "60%",
-              //   width: "60%",
-              // }}
-            />
+            <CardMedia component="img" image="/stock.png" alt="image" />
           </Grid>
           <Grid item>
             <Paper variant="outlined">

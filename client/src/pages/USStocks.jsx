@@ -20,24 +20,17 @@ const USStocks = () => {
           columnSpacing={4}
           justifyContent="center"
           alignItems="center"
-          // maxWidth="lg"
         >
           <Grid item xs={6}>
             <Typography
               component="h1"
               variant="h2"
-              // align="center"
               color="text.primary"
               gutterBottom
             >
               US Stocks
             </Typography>
-            <Typography
-              variant="h5"
-              // align="center"
-              color="text.secondary"
-              component="p"
-            >
+            <Typography variant="h5" color="text.secondary" component="p">
               Open your account for free and start investing with zero
               brokerage.
             </Typography>

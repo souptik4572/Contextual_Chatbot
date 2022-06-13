@@ -1,4 +1,3 @@
-// // API Reference: https://lucasbassetti.com.br/react-simple-chatbot/#/docs/installation
 import ChatBot from "react-simple-chatbot";
 import Fab from "@mui/material/Fab";
 import { Chat, Close } from "@mui/icons-material";

@@ -8,7 +8,6 @@ import {
   ListItemAvatar,
   ListItemButton,
   ListItemText,
-  Paper,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";

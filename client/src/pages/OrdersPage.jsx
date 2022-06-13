@@ -110,6 +110,7 @@ const OrdersPage = () => {
                   <ArrowForward />
                 </Stack>
               }
+              divider
               disableGutters
             >
               <ListItemButton onClick={() => navigate(orderId)}>
@@ -119,27 +120,6 @@ const OrdersPage = () => {
                 />
               </ListItemButton>
             </ListItem>
-            <Divider />
-            <ListItem
-              secondaryAction={
-                <Stack direction="row" spacing={4}>
-                  <Typography
-                    variant="subtitle2"
-                    color="text.secondary"
-                    gutterBottom
-                  >
-                    14 Jan 2022, 3:32 pm
-                  </Typography>
-                  <ArrowForward />
-                </Stack>
-              }
-              disableGutters
-            >
-              <ListItemButton onClick={() => navigate(orderId)}>
-                <ListItemText primary="Infosys" secondary="Rs. 59999" />
-              </ListItemButton>
-            </ListItem>
-            <Divider />
           </Grid>
         </Grid>
       </Container>
