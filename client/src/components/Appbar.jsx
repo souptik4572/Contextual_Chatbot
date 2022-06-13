@@ -31,7 +31,7 @@ const Appbar = () => {
   };
   const handleSignUp = async ({ email, name, password }) => {
     setTimeout(() => {
-      console.log("HELLO");
+      console.log("HELLO", name);
     }, 2000);
   };
   const handleForget = ({ email }) => {
@@ -67,7 +67,9 @@ const Appbar = () => {
     >
       <Toolbar sx={{ flexWrap: "wrap" }}>
         <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-          <Link href="/">GROWW</Link>
+          <Link href="/" underline="none">
+            GROWW
+          </Link>
         </Typography>
         <nav>
           <Link

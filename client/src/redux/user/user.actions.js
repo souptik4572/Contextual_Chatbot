@@ -7,7 +7,7 @@ import {
 	USER_AUTH_FAILURE,
 	USER_AUTH_LOGOUT,
 } from './user.types';
-import axios from '../../axios';
+import axios from "../../helpers/axios";
 import { setWithExpiry } from '../../helpers/localStorage';
 
 export const fetchUserRequest = () => ({
