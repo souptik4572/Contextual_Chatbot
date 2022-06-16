@@ -5,8 +5,10 @@ import { createProductValidator } from '../validations/product.js';
 import { doesProductExist, doesProductTypeExist } from '../helpers/searchModels.js';
 
 export const getAllProducts = async (req, res) => {
+	const { productTypeId } = req.query;
 	try {
-		const products = await prisma.product.findMany();
+		const filter = productTypeId ? { where: { productTypeId } } : {};
+		const products = await prisma.product.findMany(filter);
 		return handleSuccess({
 			res,
 			status: StatusCodes.OK,
