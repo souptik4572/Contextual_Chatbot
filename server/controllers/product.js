@@ -8,7 +8,12 @@ export const getAllProducts = async (req, res) => {
 	const { productTypeId } = req.query;
 	try {
 		const filter = productTypeId ? { where: { productTypeId } } : {};
-		const products = await prisma.product.findMany(filter);
+		const products = await prisma.product.findMany({
+			...filter,
+			include: {
+				type: 1,
+			},
+		});
 		return handleSuccess({
 			res,
 			status: StatusCodes.OK,
