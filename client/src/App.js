@@ -15,8 +15,18 @@ import Product from './pages/Product';
 import OrdersPage from './pages/OrdersPage';
 import Order from './pages/Order';
 import ListProductsPage from './pages/ListProductsPage.jsx';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllOrders, getAllProducts, getAllProductTypes } from './redux';
 
 function App() {
+	const dispatch = useDispatch();
+	const { token } = useSelector((state) => state.user);
+	useEffect(() => {
+		dispatch(getAllProductTypes());
+		dispatch(getAllProducts({}));
+		if (token) dispatch(getAllOrders());
+	}, []);
 	return (
 		<ThemeProvider theme={theme}>
 			<BrowserRouter>
@@ -55,7 +65,10 @@ function App() {
 						<Route path='' element={<Navigate to='stocks' replace />} />
 						<Route path='stocks' element={<OrdersPage path='stocks' />} />
 						<Route path='mutual-funds' element={<OrdersPage path='mutual-funds' />} />
-						<Route path='fixed-deposits' element={<OrdersPage path='fixed-deposits' />} />
+						<Route
+							path='fixed-deposits'
+							element={<OrdersPage path='fixed-deposits' />}
+						/>
 						<Route path='us-stocks' element={<OrdersPage path='us-stocks' />} />
 						<Route path=':category/:orderId' element={<Order />} />
 					</Route>

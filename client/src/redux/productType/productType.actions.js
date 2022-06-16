@@ -9,9 +9,9 @@ export const fetchProductTypeRequest = () => ({
 	type: FETCH_PRODUCT_TYPE_REQUEST,
 });
 
-export const fetchProductTypeSuccess = (productTypes) => ({
+export const fetchProductTypeSuccess = (productTypes, productTypesReverseMapping) => ({
 	type: FETCH_PRODUCT_TYPE_SUCCESS,
-	payload: productTypes,
+	payload: { productTypes, productTypesReverseMapping },
 });
 
 export const fetchProductTypeFailure = (errorMessage) => ({
@@ -24,7 +24,11 @@ export const getAllProductTypes = () => async (dispatch) => {
 	try {
 		const response = await axios.get('/product-types');
 		const { data: productTypes } = response.data;
-		dispatch(fetchProductTypeSuccess(productTypes));
+		const productTypesReverseMapping = {};
+		productTypes.forEach((aProductType) => {
+			productTypesReverseMapping[aProductType.name] = aProductType.id;
+		});
+		dispatch(fetchProductTypeSuccess(productTypes, productTypesReverseMapping));
 		return true;
 	} catch (error) {
 		dispatch(fetchProductTypeFailure(error.response.data.message));
