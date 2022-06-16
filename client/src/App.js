@@ -53,10 +53,10 @@ function App() {
 					</Route>
 					<Route path='/user/order' element={<LayoutPage />}>
 						<Route path='' element={<Navigate to='stocks' replace />} />
-						<Route path='stocks' element={<OrdersPage />} />
-						<Route path='mutual-funds' element={<OrdersPage />} />
-						<Route path='deposits' element={<OrdersPage />} />
-						<Route path='us-stocks' element={<OrdersPage />} />
+						<Route path='stocks' element={<OrdersPage path='stocks' />} />
+						<Route path='mutual-funds' element={<OrdersPage path='mutual-funds' />} />
+						<Route path='fixed-deposits' element={<OrdersPage path='fixed-deposits' />} />
+						<Route path='us-stocks' element={<OrdersPage path='us-stocks' />} />
 						<Route path=':category/:orderId' element={<Order />} />
 					</Route>
 					<Route path='*' element={<Navigate to='/' replace />} />

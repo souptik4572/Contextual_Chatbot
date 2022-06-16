@@ -82,7 +82,15 @@ export const getAllOwnedOrders = async (req, res) => {
 	try {
 		const orders = await prisma.order.findMany({
 			where: { userId: req.user.id },
-			include: { product: 1, status: 1, type: 1 },
+			include: {
+				product: {
+					include: {
+						type: 1,
+					},
+				},
+				status: 1,
+				type: 1,
+			},
 		});
 		return handleSuccess({
 			res,
