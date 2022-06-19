@@ -3,7 +3,7 @@ import {
 	FETCH_PRODUCT_TYPE_SUCCESS,
 	FETCH_PRODUCT_TYPE_FAILURE,
 } from './productType.types';
-import axios from '../../axios';
+import axios from "../../helpers/axios";
 
 export const fetchProductTypeRequest = () => ({
 	type: FETCH_PRODUCT_TYPE_REQUEST,

@@ -20,24 +20,17 @@ const FixedDeposits = () => {
           columnSpacing={4}
           justifyContent="center"
           alignItems="center"
-          // maxWidth="lg"
         >
           <Grid item xs={6}>
             <Typography
               component="h1"
               variant="h2"
-              // align="center"
               color="text.primary"
               gutterBottom
             >
               Fixed Deposits
             </Typography>
-            <Typography
-              variant="h5"
-              // align="center"
-              color="text.secondary"
-              component="p"
-            >
+            <Typography variant="h5" color="text.secondary" component="p">
               Assured returns without any hassle of opening a savings account.
             </Typography>
           </Grid>

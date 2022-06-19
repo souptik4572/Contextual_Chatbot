@@ -4,7 +4,7 @@ import {
 	ADMIN_AUTH_FAILURE,
 	ADMIN_AUTH_LOGOUT,
 } from './admin.types';
-import axios from '../../axios';
+import axios from "../../helpers/axios";
 import { setWithExpiry } from '../../helpers/localStorage';
 
 export const adminLoginRequest = () => ({

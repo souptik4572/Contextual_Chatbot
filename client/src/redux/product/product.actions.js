@@ -3,7 +3,7 @@ import {
 	FETCH_PRODUCT_SUCCESS,
 	FETCH_PRODUCT_FAILURE,
 } from './product.types';
-import axios from '../../axios';
+import axios from '../../helpers/axios';
 import { notNullObject } from '../../helpers/createNonNullObjects';
 
 export const fetchProductRequest = () => ({

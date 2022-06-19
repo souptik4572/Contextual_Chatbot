@@ -20,24 +20,17 @@ const MutualFunds = () => {
           columnSpacing={4}
           justifyContent="center"
           alignItems="center"
-          // maxWidth="lg"
         >
           <Grid item xs={6}>
             <Typography
               component="h1"
               variant="h2"
-              // align="center"
               color="text.primary"
               gutterBottom
             >
               Mutual Funds
             </Typography>
-            <Typography
-              variant="h5"
-              // align="center"
-              color="text.secondary"
-              component="p"
-            >
+            <Typography variant="h5" color="text.secondary" component="p">
               We started with mutual funds with a vision to make it so simple
               that anyone will be able to invest. And, we did!
             </Typography>

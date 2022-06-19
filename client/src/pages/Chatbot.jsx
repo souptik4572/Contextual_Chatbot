@@ -4,7 +4,7 @@ import Fab from '@mui/material/Fab';
 import { Chat, Close } from '@mui/icons-material';
 import * as React from 'react';
 import { Box } from '@mui/material';
-import { steps } from '../config';
+import { steps } from '../helpers/config';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';

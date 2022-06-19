@@ -1,5 +1,5 @@
-import Question from "./components/Question";
-import Answer from "./components/Answer";
+import Question from "../components/Question";
+import Answer from "../components/Answer";
 
 export const steps = (name, path) => [
   {

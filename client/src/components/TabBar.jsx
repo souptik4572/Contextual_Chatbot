@@ -1,7 +1,6 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
-import { useTheme } from "@mui/material/styles";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
@@ -9,16 +8,9 @@ import Box from "@mui/material/Box";
 import { Container } from "@mui/material";
 
 function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
+  const { children, value, index } = props;
   return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`tabpanel-${index}`}
-      aria-labelledby={`tab-${index}`}
-      {...other}
-    >
+    <div role="tabpanel" hidden={value !== index}>
       {value === index && (
         <Box sx={{ p: 3 }}>
           <Typography fontSize={30}>{children}</Typography>
@@ -33,13 +25,6 @@ TabPanel.propTypes = {
   index: PropTypes.number.isRequired,
   value: PropTypes.number.isRequired,
 };
-
-function allyProps(index) {
-  return {
-    id: `tab-${index}`,
-    "aria-controls": `tabpanel-${index}`,
-  };
-}
 
 export default function TabBar() {
   const [value, setValue] = React.useState(0);
@@ -61,10 +46,10 @@ export default function TabBar() {
         textColor="inherit"
         variant="standard"
       >
-        <Tab label="Stocks" {...allyProps(0)} />
-        <Tab label="Mutual Funds" {...allyProps(1)} />
-        <Tab label="US Stocks" {...allyProps(2)} />
-        <Tab label="FDs" {...allyProps(3)} />
+        <Tab label="Stocks" />
+        <Tab label="Mutual Funds" />
+        <Tab label="US Stocks" />
+        <Tab label="FDs" />
       </Tabs>
       <SwipeableViews index={value} onChangeIndex={handleChangeIndex}>
         <TabPanel value={value} index={0}>
