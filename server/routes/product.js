@@ -6,7 +6,7 @@ import { convertToNumber } from '../middlewares/convertToNumber.js';
 
 const router = express.Router();
 
-router.get('/', getAllProducts);
+router.get('/', convertToNumber, getAllProducts);
 
 router.put('/', authProtection(true), createProduct);
 

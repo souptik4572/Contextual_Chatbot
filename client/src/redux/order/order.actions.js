@@ -20,21 +20,23 @@ export const fetchOrderFailure = (errorMessage) => ({
 });
 
 export const getAllOrders = () => async (dispatch, getState) => {
-  dispatch(fetchOrderRequest());
-  try {
-    const {
-      admin: { token },
-    } = getState();
-    const response = await axios.get("/orders", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const { data: orders } = response.data;
-    dispatch(fetchOrderSuccess(orders));
-    return true;
-  } catch (error) {
-    dispatch(fetchOrderFailure(error.response.data.message));
-    return false;
-  }
+	dispatch(fetchOrderRequest());
+	try {
+		const {
+			user: { token },
+		} = getState();
+		const response = await axios.get('/users/orders/', {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
+		const { data: orders } = response.data;
+		console.log(orders);
+		dispatch(fetchOrderSuccess(orders));
+		return true;
+	} catch (error) {
+		console.log(error);
+		dispatch(fetchOrderFailure(error.response.data.message));
+		return false;
+	}
 };

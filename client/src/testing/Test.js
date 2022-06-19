@@ -22,7 +22,7 @@ const Test = () => {
 		console.log(result);
 	};
 	const fetchProducts = async () => {
-		const result = await dispatch(getAllProducts());
+		const result = await dispatch(getAllProducts({}));
 		console.log(result);
 	};
 	const fetchOrderStatuses = async () => {
@@ -45,7 +45,7 @@ const Test = () => {
 		<div className='Test'>
 			<h1>This is for sample testing</h1>
 			<button onClick={submitLoginCredentials}>Login Admin</button>
-			<button onClick={fetchUsers}>Submit</button>
+			<button onClick={fetchProducts}>Submit</button>
 		</div>
 	);
 };

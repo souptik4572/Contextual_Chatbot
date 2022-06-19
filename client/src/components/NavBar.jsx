@@ -82,7 +82,7 @@ export default function NavBar({ page = "explore" }) {
         replace
         to={
           page === "orders"
-            ? "/user/order/deposits"
+            ? "/user/order/fixed-deposits"
             : page === "items"
             ? "/fixed-deposit/filter"
             : "/fixed-deposit/user/explore"

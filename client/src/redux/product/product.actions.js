@@ -3,7 +3,8 @@ import {
 	FETCH_PRODUCT_SUCCESS,
 	FETCH_PRODUCT_FAILURE,
 } from './product.types';
-import axios from "../../helpers/axios";
+import axios from '../../helpers/axios';
+import { notNullObject } from '../../helpers/createNonNullObjects';
 
 export const fetchProductRequest = () => ({
 	type: FETCH_PRODUCT_REQUEST,
@@ -19,10 +20,15 @@ export const fetchProductFailure = (errorMessage) => ({
 	payload: errorMessage,
 });
 
-export const getAllProducts = () => async (dispatch) => {
+export const getAllProducts = ({ productTypeId = null }) => async (dispatch) => {
 	dispatch(fetchProductRequest());
 	try {
-		const response = await axios.get('/products');
+		const filterProducts = notNullObject({
+			productTypeId,
+		});
+		const response = await axios.get('/products', {
+			params: filterProducts,
+		});
 		const { data: products } = response.data;
 		dispatch(fetchProductSuccess(products));
 		return true;

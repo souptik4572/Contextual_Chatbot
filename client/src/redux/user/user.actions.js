@@ -28,11 +28,12 @@ export const userLoginRequest = () => ({
 	type: USER_AUTH_REQUEST,
 });
 
-export const userLoginSuccess = (token, name) => ({
+export const userLoginSuccess = (token, name, isVerified) => ({
 	type: USER_AUTH_SUCCESS,
 	payload: {
 		token,
 		name,
+		isVerified,
 	},
 });
 
@@ -69,10 +70,11 @@ export const userLogin = (email, password) => async (dispatch) => {
 	dispatch(userLoginRequest());
 	try {
 		const response = await axios.post('/users/login', { email, password });
-		const { name, token } = response.data.data;
+		const { name, token, isVerified } = response.data.data;
 		setWithExpiry('user-token', token);
 		setWithExpiry('user-name', name);
-		dispatch(userLoginSuccess(token, name));
+		setWithExpiry('user-is-verified', isVerified);
+		dispatch(userLoginSuccess(token, name, isVerified));
 		return true;
 	} catch (error) {
 		dispatch(userLoginFailure(error.response.data.message));
@@ -84,4 +86,5 @@ export const userLogout = () => async (dispatch) => {
 	dispatch(userLogoutSuccess());
 	setWithExpiry('user-token', null);
 	setWithExpiry('user-name', null);
+	setWithExpiry('user-is-verified', null);
 };

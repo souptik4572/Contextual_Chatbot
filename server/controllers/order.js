@@ -6,7 +6,14 @@ import { doesOrderExist, doesAllExist } from '../helpers/searchModels.js';
 
 export const getAllOrders = async (req, res) => {
 	try {
-		const orders = await prisma.order.findMany();
+		const orders = await prisma.order.findMany({
+			include: {
+				product: 1,
+				type: 1,
+				status: 1,
+				user: 1,
+			},
+		});
 		return handleSuccess({
 			res,
 			status: StatusCodes.OK,

@@ -9,6 +9,7 @@ const initialState = {
 	error: false,
 	message: '',
 	data: [],
+	reverseMapper: {},
 };
 
 const productTypeReducer = (state = initialState, action) => {
@@ -24,7 +25,8 @@ const productTypeReducer = (state = initialState, action) => {
 				loading: false,
 				error: false,
 				message: 'All the product types has been fetched successfully',
-				data: payload,
+				data: payload.productTypes,
+				reverseMapper: payload.productTypesReverseMapping,
 			};
 		case FETCH_PRODUCT_TYPE_FAILURE:
 			return {
@@ -32,6 +34,7 @@ const productTypeReducer = (state = initialState, action) => {
 				error: true,
 				message: payload,
 				data: [],
+				reverseMapper: {},
 			};
 		default:
 			return state;

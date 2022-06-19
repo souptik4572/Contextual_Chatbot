@@ -2,7 +2,7 @@ import Joi from 'joi';
 
 const createFaqValidationSchema = Joi.object({
 	question: Joi.string().required(),
-	description: Joi.string(),
+	description: Joi.string().allow(null, ''),
 	orderId: Joi.number().integer(),
 	productId: Joi.number().integer(),
 	orderStatusId: Joi.number().integer(),
