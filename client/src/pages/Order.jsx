@@ -3,13 +3,18 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { Button, Card, CardActions, CardContent, Divider } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
+import moment from 'moment';
 
 const Order = () => {
 	const {
 		state: {
 			id: orderId,
 			datetime: orderDateTime,
-			product: { name, price },
+			product: {
+				name,
+				price,
+				type: { name: productType },
+			},
 		},
 	} = useLocation();
 	return (
@@ -29,7 +34,7 @@ const Order = () => {
 							{name}
 						</Typography>
 						<Typography sx={{ fontSize: 14 }} color='text.secondary' gutterBottom>
-							Rs. {price}
+							{productType === 'us-stocks' ? '$' : 'Rs'}. {price}
 						</Typography>
 						<Divider />
 						<Typography variant='body2'>
@@ -38,7 +43,7 @@ const Order = () => {
 							placed on
 						</Typography>
 						<Typography sx={{ mb: 1.5 }} color='text.secondary'>
-							{orderDateTime}
+							{moment(orderDateTime).format('dddd, MMMM Do YYYY, h:mm:ss a')}
 						</Typography>
 					</CardContent>
 					<CardActions>
