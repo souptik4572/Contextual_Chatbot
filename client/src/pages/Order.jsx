@@ -15,6 +15,8 @@ const Order = () => {
 				price,
 				type: { name: productType },
 			},
+			status: { name: orderStatus },
+			type: { name: orderType },
 		},
 	} = useLocation();
 	return (
@@ -44,6 +46,11 @@ const Order = () => {
 						</Typography>
 						<Typography sx={{ mb: 1.5 }} color='text.secondary'>
 							{moment(orderDateTime).format('dddd, MMMM Do YYYY, h:mm:ss a')}
+						</Typography>
+						<Typography variant='body2'>
+							Order Status: {orderStatus}
+							<br />
+							Order Type: {orderType}
 						</Typography>
 					</CardContent>
 					<CardActions>
