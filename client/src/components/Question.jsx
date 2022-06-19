@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAllFaqs } from '../redux';
 import createFilterParams from '../helpers/createFilterParams';
 
+
+
 const Question = (props) => {
 	const [loading, setLoading] = useState(true);
 	const [result, setResult] = useState([]);
