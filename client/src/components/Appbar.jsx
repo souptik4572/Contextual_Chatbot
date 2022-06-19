@@ -13,7 +13,7 @@ import {
 import React from 'react';
 import { DialogAuth } from 'react-mui-auth-page';
 import { useSelector, useDispatch } from 'react-redux';
-import { userLogin } from '../redux/user/user.actions';
+import { userLogin, userLogout } from '../redux/user/user.actions';
 import { stringAvatar } from '../helpers/createAvatar';
 import { BusinessCenter, Logout, Check, Close } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
@@ -141,7 +141,11 @@ const Appbar = () => {
 								</ListItemIcon>
 								My Orders
 							</MenuItem>
-							<MenuItem>
+							<MenuItem
+								onClick={() => {
+									dispatch(userLogout());
+								}}
+							>
 								<ListItemIcon>
 									<Logout fontSize='small' />
 								</ListItemIcon>
