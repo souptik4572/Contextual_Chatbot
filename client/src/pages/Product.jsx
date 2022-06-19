@@ -18,7 +18,11 @@ import { Share } from '@mui/icons-material';
 const Product = () => {
 	const { productId } = useParams();
 	const {
-		state: { name, price, type },
+		state: {
+			name,
+			price,
+			type: { name: productType },
+		},
 	} = useLocation();
 	return (
 		<React.Fragment>
@@ -63,7 +67,9 @@ const Product = () => {
 								placeholder={price}
 								InputProps={{
 									startAdornment: (
-										<InputAdornment position='start'>₹</InputAdornment>
+										<InputAdornment position='start'>
+											{productType === 'us-stocks' ? '$' : '₹'}
+										</InputAdornment>
 									),
 								}}
 							/>

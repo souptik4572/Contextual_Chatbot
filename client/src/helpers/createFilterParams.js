@@ -10,7 +10,7 @@ const generateFilters = (pathDataArray, reverseMapper) => {
 			filterParams.orderId = pathDataArray[0];
 		}
 	} else {
-		if (nLen === 1 && pathDataArray[0] in reverseMapper) {
+		if (nLen % 2 === 1 && pathDataArray[0] in reverseMapper) {
 			filterParams.productTypeId = reverseMapper[pathDataArray[0]];
 		}
 	}

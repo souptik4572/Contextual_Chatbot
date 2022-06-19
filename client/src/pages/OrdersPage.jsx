@@ -21,6 +21,7 @@ import NavBar from '../components/NavBar';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllOrders } from '../redux';
 import { useEffect } from 'react';
+import moment from 'moment';
 
 const OrdersPage = ({ path }) => {
 	const navigate = useNavigate();
@@ -107,7 +108,9 @@ const OrdersPage = ({ path }) => {
 												color='text.secondary'
 												gutterBottom
 											>
-												{anOrder.datetime}
+												{moment(anOrder.datetime).format(
+													'dddd, MMMM Do YYYY, h:mm:ss a'
+												)}
 											</Typography>
 											<ArrowForward />
 										</Stack>
@@ -121,7 +124,11 @@ const OrdersPage = ({ path }) => {
 									>
 										<ListItemText
 											primary={anOrder.product.name}
-											secondary={`Rs. ${anOrder.product.price}`}
+											secondary={`${
+												anOrder.product.type.name === 'us-stocks'
+													? '$'
+													: 'Rs'
+											}. ${anOrder.product.price}`}
 										/>
 									</ListItemButton>
 								</ListItem>
