@@ -3,41 +3,40 @@ import React, { useEffect, useState } from 'react';
 import { Loading } from 'react-simple-chatbot';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllFaqs } from '../redux';
+import createFilterParams from '../helpers/createFilterParams';
 
 const Question = (props) => {
 	const [loading, setLoading] = useState(true);
 	const [result, setResult] = useState([]);
 	const chosenQuestionId = props.previousStep.value;
 	const path = props.path;
-
-	const [productTypeParam] = path
+	const pathDataArray = path
 		.split('/')
-		.filter((aParam) => aParam !== 'filter')
+		.filter((aParam) => aParam !== 'filter' && aParam !== '')
 		.reverse();
 
-	const { data: filteredFaqs } = useSelector((state) => state.faq);
 	const { reverseMapper } = useSelector((state) => state.productType);
 	const dispatch = useDispatch();
 
 	const myFunc = async () => {
 		// If not the first Faq
-		const filterParams = {};
-		console.log(productTypeParam);
-		if (productTypeParam) filterParams.productTypeId = reverseMapper[productTypeParam];
+		const filterParams = createFilterParams(pathDataArray, reverseMapper);
 		console.log(filterParams);
 		if (chosenQuestionId) {
 			//fetch questions where parentFaqId === chosenQuestionId
 			let currentFaqs = await dispatch(
 				getAllFaqs({ ...filterParams, parentFaqId: chosenQuestionId })
 			);
+			console.log(currentFaqs);
 			if (currentFaqs.length === 0) {
 				currentFaqs = await dispatch(getAllFaqs({ ...filterParams }));
 			}
 			setResult(currentFaqs);
 		} else {
 			// fetch questions where parentFaqId === -1 & filter(user, kyc, url/page using path)
-			if (filteredFaqs.length === 0) {
+			if (result.length === 0) {
 				let currentFaqs = await dispatch(getAllFaqs({ ...filterParams }));
+				console.log(currentFaqs);
 				setResult(currentFaqs);
 			}
 		}

@@ -22,8 +22,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllOrders } from '../redux';
 import { useEffect } from 'react';
 
-const orderId = 'axis';
-
 const OrdersPage = ({ path }) => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -116,7 +114,11 @@ const OrdersPage = ({ path }) => {
 									}
 									disableGutters
 								>
-									<ListItemButton onClick={() => navigate(orderId)}>
+									<ListItemButton
+										onClick={() =>
+											navigate(`${anOrder.id}`, { state: { ...anOrder } })
+										}
+									>
 										<ListItemText
 											primary={anOrder.product.name}
 											secondary={`Rs. ${anOrder.product.price}`}

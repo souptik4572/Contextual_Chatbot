@@ -15,7 +15,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../redux';
 import { useEffect } from 'react';
 
-const orderId = 'axis';
 
 const ListProductsPage = ({ path }) => {
 	const navigate = useNavigate();
@@ -52,9 +51,15 @@ const ListProductsPage = ({ path }) => {
 									</Typography>
 								}
 							>
-								<ListItemButton onClick={() => navigate(`/${path}/${orderId}`)}>
+								<ListItemButton
+									onClick={() =>
+										navigate(`/${path}/${aProduct.id}`, {
+											state: { ...aProduct },
+										})
+									}
+								>
 									<ListItemAvatar>
-										<Avatar>Axis </Avatar>
+										<Avatar>{aProduct.name}</Avatar>
 									</ListItemAvatar>
 									<ListItemText primary={aProduct.name} secondary='Medium Risk' />
 								</ListItemButton>
