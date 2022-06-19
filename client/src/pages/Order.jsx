@@ -9,7 +9,11 @@ const Order = () => {
 		state: {
 			id: orderId,
 			datetime: orderDateTime,
-			product: { name, price },
+			product: {
+				name,
+				price,
+				type: { name: productType },
+			},
 		},
 	} = useLocation();
 	return (
@@ -29,7 +33,8 @@ const Order = () => {
 							{name}
 						</Typography>
 						<Typography sx={{ fontSize: 14 }} color='text.secondary' gutterBottom>
-							Rs. {price}
+							{productType === 'us-stocks' ? '$' : 'Rs.'}
+							{price}
 						</Typography>
 						<Divider />
 						<Typography variant='body2'>

@@ -121,7 +121,11 @@ const OrdersPage = ({ path }) => {
 									>
 										<ListItemText
 											primary={anOrder.product.name}
-											secondary={`Rs. ${anOrder.product.price}`}
+											secondary={`${
+												anOrder.product.type.name === 'us-stocks'
+													? '$'
+													: 'Rs.'
+											} ${anOrder.product.price}`}
 										/>
 									</ListItemButton>
 								</ListItem>
