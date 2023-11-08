@@ -40,8 +40,8 @@ This is a chatbot application that provides contextual responses to user queries
 ## Built With
 
 - [Express](https://expressjs.com/) - Web framework
-- [MongoDB](https://www.mongodb.com/) - Database 
-- [Mongoose](https://mongoosejs.com/) - MongoDB object modeling
+- [PostgreSQL](https://www.postgresql.org/) - Database
+- [Prisma](https://www.prisma.io/) - PostgreSQL object modeling
 - [React](https://react.dev/) - For creating the Client side frontend application
 
 ## Author
